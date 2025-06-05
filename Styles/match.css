@@ -1,0 +1,320 @@
+/* Styles.css/match.css - Estilos para a Página de Match */
+
+.match-container {
+  display: flex;
+  padding: 20px;
+  gap: 30px;
+  align-items: flex-start; /* Alinha o sidebar e o conteúdo no topo */
+  flex-wrap: wrap; /* Permite que os elementos quebrem a linha em telas menores */
+}
+
+.filters-sidebar {
+  background-color: #fdfcf0;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0; /* Não permite que encolha */
+  width: 280px; /* Largura fixa para o sidebar */
+  position: sticky; /* Fixa o sidebar enquanto o conteúdo rola */
+  top: 90px; /* Altura do header para não sobrepor */
+  margin-bottom: 20px; /* Espaço abaixo em telas pequenas */
+}
+
+.filters-sidebar h3 {
+  color: #2e4a62;
+  margin-bottom: 25px;
+  font-size: 1.4rem;
+  text-align: center;
+  border-bottom: 1px solid #e9f0f7;
+  padding-bottom: 15px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4d7298;
+  font-size: 0.95rem;
+}
+
+.filters-sidebar select,
+.filters-sidebar input[type="number"],
+.filters-sidebar input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #333;
+  background-color: #ffffff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.filters-sidebar select:focus,
+.filters-sidebar input:focus {
+  border-color: #8db5e2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(141, 181, 226, 0.3);
+}
+
+.filters-sidebar .btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filters-sidebar .btn-cta-painel {
+  background-color: #6a9a2a;
+  color: #fff;
+  border: none;
+}
+
+.filters-sidebar .btn-cta-painel:hover {
+  background-color: #557c21;
+  box-shadow: 0 4px 10px rgba(106, 154, 42, 0.3);
+}
+
+.filters-sidebar .btn-contorno-painel {
+  background-color: transparent;
+  color: #4d7298;
+  border: 2px solid #4d7298;
+}
+
+.filters-sidebar .btn-contorno-painel:hover {
+  background-color: #e9f0f7;
+  color: #2e4a62;
+  border-color: #2e4a62;
+}
+
+.match-content {
+  flex-grow: 1; /* Permite que o conteúdo ocupe o espaço restante */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: calc(100% - 310px); /* Ajusta largura para sidebar + gap */
+}
+
+.match-content h2 {
+  color: #2e4a62;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.profile-cards-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Largura máxima para os cartões de perfil */
+  height: 500px; /* Altura fixa para o contêiner de cartões */
+  margin-bottom: 30px;
+  perspective: 1000px; /* Para efeitos 3D na animação */
+}
+
+.profile-card {
+  background-color: #fdfcf0;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  text-align: center;
+  position: absolute; /* Para empilhar os cartões */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bounce effect */
+  backface-visibility: hidden; /* Evita a parte de trás do cartão ser visível */
+  will-change: transform, opacity; /* Otimização para animação */
+  overflow: hidden; /* Garante que o conteúdo não vaze */
+}
+
+.profile-card.swiping-left {
+  transform: translateX(-150%) rotate(-30deg);
+  opacity: 0;
+}
+
+.profile-card.swiping-right {
+  transform: translateX(150%) rotate(30deg);
+  opacity: 0;
+}
+
+.profile-card.no-more-profiles {
+  background-color: #f0f4f8;
+  color: #4d7298;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 4px solid #6a9a2a;
+  box-shadow: 0 0 0 6px rgba(106, 154, 42, 0.2);
+}
+
+.profile-card h3 {
+  font-size: 1.6rem;
+  color: #2e4a62;
+  margin-bottom: 8px;
+}
+
+.profile-card p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.profile-card .details {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: left;
+  max-width: 90%;
+}
+
+.profile-card .details p {
+  margin-bottom: 4px;
+}
+
+.match-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px; /* Adicionado margem para afastar dos cartões */
+}
+
+.action-btn {
+  background-color: #fdfcf0;
+  border: none;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  color: #ccc; /* Default color */
+}
+
+.action-btn.dislike {
+  color: #e74c3c;
+}
+.action-btn.like {
+  color: #2ecc71;
+}
+.action-btn.superlike {
+  color: #3498db;
+  font-size: 2rem; /* Smaller star */
+}
+
+.action-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .match-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .filters-sidebar {
+    width: 100%;
+    max-width: 400px;
+    position: static; /* Remove sticky on small screens */
+    margin-bottom: 30px;
+  }
+
+  .match-content {
+    max-width: 100%; /* Ocupa toda a largura disponível */
+  }
+
+  .profile-cards-container {
+    height: 450px; /* Ajusta altura para telas menores */
+  }
+
+  .action-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  .action-btn.superlike {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters-sidebar {
+    padding: 20px;
+  }
+  .filters-sidebar h3 {
+    font-size: 1.2rem;
+  }
+  .filter-group label {
+    font-size: 0.9rem;
+  }
+  .filters-sidebar select,
+  .filters-sidebar input {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .profile-cards-container {
+    height: 400px; /* Ainda menor para telas muito pequenas */
+  }
+
+  .profile-card h3 {
+    font-size: 1.4rem;
+  }
+  .profile-card p {
+    font-size: 0.9rem;
+  }
+  .profile-card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .match-actions {
+    gap: 15px;
+  }
+  .action-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+  .action-btn.superlike {
+    font-size: 1.5rem;
+  }
+}

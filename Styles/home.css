@@ -1,0 +1,1992 @@
+/* Styles/home.css */
+/* Reset bÃ¡sico e Estilos Globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 130%;
+  /* Considerar se isso nÃ£o aumenta demais os tamanhos de fonte em geral */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  /* Corrigido para Poppins */
+  background-color: #fefae0;
+  color: #4d7298;
+  line-height: 1.6;
+  font-size: 1rem;
+  /* Relativo ao font-size do html, entÃ£o efetivamente 1.3rem */
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 90%;
+}
+
+#conteudoPrincipal.fosco {
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+/* CabeÃ§alho */
+.hidden {
+  display: none !important;
+  /* Garante que a classe 'hidden' sempre esconde o elemento */
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fdfcf0;
+  padding: 20px 35px;
+  height: auto;
+  min-height: 170px;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #edeae0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  flex-wrap: nowrap;
+}
+
+.topo .logo {
+  flex-shrink: 0;
+}
+
+.topo .logo img {
+  height: 130px;
+  width: auto;
+  display: block;
+  margin-right: 20px;
+}
+
+.topo nav#main-navigation {
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topo nav#main-navigation ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+
+.topo nav#main-navigation ul li {
+  padding: 0 20px;
+  position: relative;
+}
+
+.topo nav#main-navigation ul li:not(:last-child) {
+  border-right: 1px solid #edeae0;
+}
+
+.topo nav#main-navigation ul li a {
+  text-decoration: none;
+  color: #4d7298;
+  font-weight: 500;
+  font-size: 1.43rem;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+  padding: 10px 0;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  display: inline-block;
+  border-left: none;
+}
+
+.topo nav#main-navigation ul li a:hover {
+  color: #007ac2;
+}
+
+.topo nav#main-navigation ul li a.active {
+  color: #007ac2;
+  font-weight: 600;
+  border-bottom-color: #007ac2;
+}
+
+.topo .botoes.desktop-only {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+.topo .botoes.desktop-only .btn {
+  margin-left: 10px;
+  padding: 12px 25px;
+  border-radius: 28px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid #007ac2;
+  color: #007ac2;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.topo .botoes.desktop-only .btn.contorno:hover {
+  background-color: #007ac2;
+  color: #fdfcf0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+.menu-hamburguer {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1005;
+}
+
+.hamburguer-linha {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #4d7298;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-hamburguer.aberto .hamburguer-linha:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.menu-hamburguer.aberto .hamburguer-linha:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-hamburguer.aberto .hamburguer-linha:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* Hero Section */
+.hero {
+  padding: 40px 0;
+  background-color: #f8f6e8;
+  min-height: calc(100vh - 170px);
+  /* Altura do header */
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.hero-text-and-button-wrapper {
+  flex-basis: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.hero-text-content h2 {
+  font-size: clamp(3.12em, 2.15vw, 4.94em);
+  /* Escala com viewport, com limites */
+  color: #4d7298;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.hero-text-content p.hero-subtitle {
+  font-size: clamp(1.43em, 3.9vw, 1.69em);
+  color: #5f87ae;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.hero-button-wrapper {
+  margin-top: 10px;
+}
+
+.btn-cta {
+  background-color: #b3d89c;
+  color: #4d7298;
+  padding: 1em 2.2em;
+  border: none;
+  border-radius: 1.8em;
+  /* Valor em 'em' para escalar com font-size */
+  font-size: 1.2em;
+  /* Relativo ao font-size do pai */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(77, 114, 152, 0.15);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.btn-cta:hover {
+  background-color: #9fc089;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(77, 114, 152, 0.2);
+}
+
+.hero-image-collage-container {
+  flex-basis: 55%;
+  position: relative;
+  height: 562.5px;
+  /* Altura fixa para o container da colagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-large-wrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70%;
+  /* Da largura do hero-image-collage-container */
+  height: 100%;
+  /* Da altura do hero-image-collage-container */
+  background-color: #bfd9e2;
+  /* Cor de fundo para o wrapper da imagem grande */
+  border-radius: 37.5px;
+  /* Raio da borda em pixels fixos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.img-elderly {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+  /* Raio da borda da imagem */
+}
+
+.image-small-top-wrapper {
+  position: absolute;
+  left: 0%;
+  /* Deslocamento para a esquerda */
+  top: 15%;
+  transform: translateY(-15%);
+  width: 40%;
+  /* Da largura do hero-image-collage-container */
+  max-width: 220px;
+  /* Largura mÃ¡xima */
+  height: auto;
+  aspect-ratio: 200 / 250;
+  /* ProporÃ§Ã£o da imagem */
+  background-color: #d8e8ce;
+  border-radius: 20px;
+  padding: 4%;
+  /* Padding interno percentual */
+  z-index: 1;
+  /* Para sobrepor a imagem grande se necessÃ¡rio */
+  box-sizing: border-box;
+}
+
+.img-child-smiling {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.image-small-bottom-wrapper {
+  position: absolute;
+  left: 25%;
+  /* Deslocamento em relaÃ§Ã£o ao canto esquerdo do container pai */
+  bottom: -5%;
+  /* Deslocamento para baixo */
+  width: 25%;
+  /* Da largura do hero-image-collage-container */
+  max-width: 150px;
+  height: auto;
+  aspect-ratio: 1/1;
+  /* Imagem quadrada */
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 3%;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.img-child-wheelchair {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.hero-image-collage-container img {
+  /* Garante que as imagens sÃ£o blocos e nÃ£o tÃªm espaÃ§o extra */
+  display: block;
+}
+
+/* SeÃ§Ãµes de InformaÃ§Ã£o e ServiÃ§os */
+.page-section,
+.services,
+.about,
+.support-section {
+  padding: calc(70px * 1.3) 0;
+  /* Padding vertical escalÃ¡vel */
+  text-align: center;
+}
+
+.tutorial-section,
+/* Fundo igual ao body */
+.about,
+.support-section {
+  background-color: #fefae0;
+}
+
+.services {
+  /* Fundo levemente diferente para a seÃ§Ã£o de serviÃ§os */
+  background-color: #f8f6e8;
+}
+
+.section-title {
+  font-size: clamp(2.6em, 5.85vw, 3.64em);
+  /* TÃ­tulo principal da seÃ§Ã£o */
+  color: #4d7298;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.subsection-title {
+  /* Para subtÃ­tulos dentro de uma seÃ§Ã£o */
+  font-size: clamp(1.95em, 4.55vw, 2.6em);
+  color: #007ac2;
+  margin-top: calc(45px * 1.3);
+  margin-bottom: calc(25px * 1.3);
+  font-weight: 500;
+}
+
+.section-description {
+  font-size: clamp(1.3em, 3.64vw, 1.56em);
+  /* DescriÃ§Ã£o geral da seÃ§Ã£o */
+  color: #5f87ae;
+  max-width: 800px;
+  margin: 0 auto calc(45px * 1.3) auto;
+  line-height: 1.7;
+}
+
+/* SeÃ§Ã£o Sobre NÃ³s */
+.about-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  /* Alinha verticalmente o texto e o vÃ­deo */
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+  /* Para nÃ£o espremer demais em telas menores */
+}
+
+/* Estilos de Placeholder de VÃ­deo e Player Real */
+.video-container-actual {
+  /* Container para o player de vÃ­deo real */
+  background-color: #000;
+  /* Fundo preto para o vÃ­deo */
+  border: none;
+  /* Remove borda se houver */
+  padding: 0;
+  /* Remove padding se houver */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Garante que o vÃ­deo nÃ£o ultrapasse as bordas arredondadas */
+}
+
+.video-container-actual p {
+  /* Esconde texto de fallback do placeholder */
+  display: none;
+}
+
+.video-container-actual video.custom-video-player {
+  /* Estilo para o player de vÃ­deo */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Garante que o vÃ­deo cubra o container */
+  display: block;
+  border-radius: inherit;
+  /* Herda o border-radius do container pai */
+}
+
+.about-video-placeholder.video-container-actual {
+  flex: 1;
+  min-width: 300px;
+  height: calc(250px * 1.15);
+  /* Altura ajustada e escalÃ¡vel */
+  border-radius: 12px;
+  /* Borda arredondada para o vÃ­deo */
+}
+
+.about-video-placeholder.video-container-actual video {
+  border-radius: 12px;
+}
+
+/* Placeholder de vÃ­deo para cards de opÃ§Ã£o de encontrar */
+.video-placeholder-inline.video-container-actual {
+  width: 100%;
+  max-width: 300px;
+  /* Limita a largura mÃ¡xima do vÃ­deo inline */
+  height: 180px;
+  /* Altura fixa para os vÃ­deos inline */
+  border-radius: 8px;
+  margin-bottom: 20px;
+  /* EspaÃ§amento abaixo do vÃ­deo */
+}
+
+.video-placeholder-inline.video-container-actual video {
+  border-radius: 8px;
+}
+
+/* Placeholder de vÃ­deo para a seÃ§Ã£o "Como Usar" */
+.video-placeholder#videoTutorialGeral.video-container-actual {
+  background-color: #000;
+  border-radius: 12px;
+  height: 280px;
+  /* Altura um pouco maior para o tutorial geral */
+  width: 100%;
+  max-width: 560px;
+  /* Largura mÃ¡xima para o vÃ­deo tutorial */
+  border: none;
+  padding: 0;
+}
+
+.video-placeholder#videoTutorialGeral.video-container-actual video {
+  border-radius: 12px;
+}
+
+/* OpÃ§Ãµes de Encontrar Cuidador */
+.finding-options-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* Permite que os cards quebrem a linha */
+  gap: 30px;
+  justify-content: center;
+  /* Centraliza o(s) card(s) */
+  margin-bottom: 50px;
+}
+
+.finding-option-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  text-align: center;
+  flex: 0 1 450px;
+  /* NÃ£o cresce, pode encolher, base de 450px */
+  /* min-width: 300px; Removido para permitir que um Ãºnico card nÃ£o se estique demais se nÃ£o tiver max-width */
+  max-width: 450px;
+  /* Garante que um Ãºnico card nÃ£o fique excessivamente largo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.finding-option-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(77, 114, 152, 0.15);
+}
+
+.finding-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  /* Ãcone redondo */
+  background-color: #e0e7ee;
+  /* Fundo suave para o Ã­cone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* As imagens de placeholder jÃ¡ tÃªm texto, se fossem Ã­cones SVG/FontAwesome, aqui viria o estilo */
+}
+
+.finding-option-card h3 {
+  color: #007ac2;
+  font-size: 1.4em;
+  /* Relativo ao font-size do card */
+  margin-bottom: 15px;
+}
+
+.finding-option-card p {
+  font-size: 0.95em;
+  /* Relativo ao font-size do card */
+  color: #5f87ae;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  /* EspaÃ§amento antes do vÃ­deo ou botÃ£o */
+  flex-grow: 1;
+  /* Faz o parÃ¡grafo ocupar o espaÃ§o disponÃ­vel, empurrando o botÃ£o para baixo */
+}
+
+.btn-finding-option {
+  background-color: #b3d89c;
+  color: #4d7298;
+  padding: 0.9em 1.9em;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 1.6em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  margin-top: auto;
+  /* Garante que o botÃ£o fique na parte inferior do card */
+  box-shadow: 0 2px 8px rgba(77, 114, 152, 0.1);
+  line-height: 1.3;
+}
+
+.btn-finding-option:hover {
+  background-color: #9bc882;
+  /* Tom mais escuro do verde */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(77, 114, 152, 0.15);
+}
+
+/* Grid de ServiÃ§os */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 35px;
+  margin-top: 15px;
+}
+
+.service-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(77, 114, 152, 0.12);
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  padding: 12px;
+  /* Se for um Ã­cone de fonte, ou para dar espaÃ§o se for img */
+  background-color: #e0e7ee;
+  /* Fundo do Ã­cone */
+}
+
+.service-card h3 {
+  color: #007ac2;
+  font-size: 1.4em;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-size: 1em;
+  /* Relativo ao font-size do card */
+  color: #5f87ae;
+}
+
+/* Container para o vÃ­deo Ãºnico na seÃ§Ã£o Tutorial */
+.single-video-placeholder-container {
+  display: flex;
+  justify-content: center;
+  /* Centraliza o vÃ­deo na seÃ§Ã£o */
+}
+
+/* SeÃ§Ã£o de Suporte (Accordion) */
+.support-section .accordion {
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.accordion-item {
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  /* Importante para o efeito de max-height */
+}
+
+.accordion-header {
+  background-color: #fff;
+  /* Pode ser #fdfcf0 para combinar com o header */
+  color: #007ac2;
+  cursor: pointer;
+  padding: 18px 25px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.15em;
+  /* Tamanho da fonte do header do accordion */
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-header:hover {
+  background-color: #f8f6e8;
+  /* Leve destaque ao passar o mouse */
+}
+
+.accordion-icon {
+  font-size: 0.9em;
+  transition: transform 0.3s ease;
+  color: #007ac2;
+  /* Cor do Ã­cone do accordion */
+}
+
+.accordion-item.active .accordion-icon {
+  /* Quando o item estÃ¡ ativo (aberto) */
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  /* ComeÃ§a fechado */
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: 0 25px;
+  /* Padding lateral para o conteÃºdo */
+  background-color: #fdfcf0;
+  /* Fundo do conteÃºdo do accordion */
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 500px;
+  /* Um valor suficientemente grande para o conteúdo, ajuste se necessário */
+  padding-top: 15px;
+  /* Adiciona padding no topo */
+  padding-bottom: 20px;
+  /* Garante padding na parte de baixo */
+}
+
+.accordion-content p {
+  font-size: 0.95em;
+  /* Tamanho da fonte do texto no accordion */
+  color: #5f87ae;
+  line-height: 1.7;
+  margin: 0;
+  /* Remove margem padrÃ£o do parÃ¡grafo */
+  padding-bottom: 20px;
+  /* Adiciona padding apenas na parte de baixo quando aberto */
+}
+
+/* BotÃ£o de Fale Conosco na seÃ§Ã£o de suporte */
+.support-section .btn-cta {
+  margin-top: 40px;
+  /* EspaÃ§amento acima do botÃ£o */
+}
+
+/* RodapÃ© */
+.footer {
+  background-color: #4d7298;
+  /* Cor de fundo do rodapÃ© */
+  color: #fefae0;
+  /* Cor do texto no rodapÃ© */
+  text-align: center;
+  padding: 35px 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.footer p {
+  margin-bottom: 7px;
+}
+
+/* Estilos para Modais (Cadastro, Login, etc.) */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  /* Overlay mais escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: #fff;
+  /* Fundo do modal */
+  padding: 25px 35px;
+  /* EspaÃ§amento interno */
+  border-radius: 15px;
+  /* Bordas arredondadas */
+  width: 90%;
+  /* Responsivo */
+  max-width: 560px;
+  /* Largura mÃ¡xima */
+  max-height: 90vh;
+  /* Altura mÃ¡xima, permite scroll se necessÃ¡rio */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  /* Para permitir scroll interno no form */
+}
+
+.modal:not(.hidden) .modal-content {
+  transform: scale(1);
+  /* Efeito de zoom ao abrir */
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.85em;
+  /* Tamanho do tÃ­tulo do modal */
+  text-align: center;
+  color: #4d7298;
+  /* Cor do tÃ­tulo */
+  flex-shrink: 0;
+  /* Para nÃ£o encolher com o form */
+}
+
+.modal-content .fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 32px;
+  /* Tamanho do Ã­cone de fechar */
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 5px;
+  line-height: 1;
+  width: 44px;
+  /* Ãrea de clique maior */
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.modal-content .fechar:hover {
+  color: #333;
+  background-color: #f0f0f0;
+  transform: scale(1.1);
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* EspaÃ§o entre os elementos do formulÃ¡rio */
+  flex-grow: 1;
+  /* Para o form ocupar espaÃ§o e permitir scroll */
+  overflow-y: auto;
+  /* Scroll apenas no formulÃ¡rio */
+  min-height: 0;
+  /* NecessÃ¡rio para flexbox e scroll */
+  padding-right: 10px;
+  /* EspaÃ§o para a barra de rolagem nÃ£o sobrepor o conteÃºdo */
+}
+
+/* EstilizaÃ§Ã£o da barra de rolagem no formulÃ¡rio do modal */
+.modal-content form::-webkit-scrollbar {
+  width: 7px;
+}
+
+.modal-content form::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-content form::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.modal-content form::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.modal-content form label {
+  font-size: 1.05rem;
+  /* Tamanho do label */
+  color: #4d7298;
+  margin-bottom: -3px;
+  /* Ajuste fino de espaÃ§amento */
+  font-weight: 500;
+  display: block;
+  margin-top: 10px;
+  /* EspaÃ§o acima de cada label */
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="email"],
+.modal-content form input[type="password"],
+.modal-content form input[type="date"],
+.modal-content form input[type="file"],
+.modal-content form input[type="tel"],
+.modal-content form textarea,
+.modal-content form select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1.05em;
+  /* Tamanho da fonte nos inputs */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f8f6e8;
+  /* Fundo suave para inputs */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 5px;
+  color: #4d7298;
+  /* Cor do texto digitado */
+}
+
+.modal-content form input::placeholder,
+.modal-content form textarea::placeholder {
+  color: #7a9bbd;
+  /* Cor do placeholder */
+}
+
+.modal-content form input:focus,
+.modal-content form textarea:focus,
+.modal-content form select:focus {
+  border-color: #007ac2;
+  /* Destaque no foco */
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 122, 194, 0.15);
+}
+
+.modal-content form textarea {
+  min-height: 60px;
+  /* Altura mÃ­nima para textarea */
+  resize: vertical;
+  /* Permite redimensionar verticalmente */
+}
+
+.modal-content form .telefone-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-content form .telefone-inputs input#cadastroDdd {
+  width: 70px;
+  /* Largura fixa para DDD */
+  text-align: center;
+}
+
+.modal-content form .telefone-inputs input#cadastroTelefoneNum {
+  flex-grow: 1;
+  /* Ocupa o restante do espaÃ§o */
+}
+
+.modal-content form .hidden {
+  /* Classe para esconder elementos */
+  display: none !important;
+}
+
+.modal-content form .termos-label {
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5f87ae;
+  margin-top: 12px;
+}
+
+.modal-content form .termos-label input[type="checkbox"] {
+  width: auto;
+  /* Tamanho automÃ¡tico para checkbox */
+  margin: 0;
+  /* Remove margens padrÃ£o */
+}
+
+.modal-content form .termos-label a {
+  color: #007ac2;
+  text-decoration: none;
+}
+
+.modal-content form .termos-label a:hover {
+  text-decoration: underline;
+}
+
+.modal-content form .btn-destaque-modal {
+  /* BotÃ£o principal do modal */
+  background-color: #b3d89c;
+  color: #4d7298;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.9em 1.6em;
+  font-size: 1.1em;
+  border-radius: 1.6em;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 15px;
+  /* EspaÃ§o acima do botÃ£o */
+  box-shadow: 0 2px 8px rgba(77, 114, 152, 0.1);
+  line-height: 1.3;
+}
+
+.modal-content form .btn-destaque-modal:hover {
+  background-color: #9bc882;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(77, 114, 152, 0.15);
+}
+
+/* Specific style for "Criar Conta" button for a blue look */
+#btnFinalizarCadastro {
+  background-color: #007ac2 !important;
+  /* Force blue background */
+  color: #fefae0 !important;
+  /* Force light text color */
+  border-color: #007ac2 !important;
+  /* Ensure border matches */
+  box-shadow: 0 4px 10px rgba(0, 122, 194, 0.2) !important;
+  /* Adjusted shadow */
+  padding: 1.2em 2.5em !important;
+  /* Exemplo de padding aumentado */
+  font-size: 1.05em !important;
+  /* Ajusta para o mesmo tamanho de fonte dos inputs */
+  margin-top: 30px !important;
+  /* Adiciona espaçamento superior */
+  font-family: "Poppins", sans-serif !important;
+  /* Aplica a fonte Poppins */
+  font-weight: 500 !important;
+  /* Ajusta o peso da fonte, pode ser 600 se quiser mais negrito */
+}
+
+#btnFinalizarCadastro:hover {
+  background-color: #005c9a !important;
+  /* Darker blue on hover */
+  border-color: #005c9a !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(0, 122, 194, 0.3) !important;
+  /* Adjusted shadow on hover */
+}
+
+
+/* EstilizaÃ§Ã£o dos Passos do Cadastro */
+.modal-content form fieldset {
+  border: 1px solid #d1e7dd;
+  /* Borda suave para fieldset */
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+}
+
+.modal-content form legend {
+  font-weight: 600;
+  color: #007ac2;
+  padding: 0 10px;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  /* EspaÃ§o abaixo da legenda */
+}
+
+.modal-content form .doc-hint {
+  /* Dicas para campos de documento */
+  font-size: 0.88em;
+  color: #7a9bbd;
+  display: block;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+.modal-navigation {
+  /* Container para botÃµes de navegaÃ§Ã£o entre etapas */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.modal-navigation .btn-prev-step,
+.modal-navigation .btn-next-step {
+  padding: 0.8em 1.5em;
+  font-size: 1em;
+  border-radius: 1.8em;
+  cursor: pointer;
+  border: 1px solid #b0b0b0;
+  background-color: #f0f0f0;
+  color: #4d7298;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  flex-grow: 1;
+  /* Para ocupar espaÃ§o igual se houver 2 botÃµes */
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.modal-navigation .btn-prev-step:hover,
+.modal-navigation .btn-next-step:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.modal-navigation .btn-next-step {
+  /* BotÃ£o de PrÃ³ximo Passo */
+  background-color: #007ac2;
+  color: white;
+  border-color: #007ac2;
+  font-weight: 600;
+}
+
+.modal-navigation .btn-next-step:hover {
+  background-color: #005c9a;
+  box-shadow: 0 2px 8px rgba(0, 92, 154, 0.2);
+}
+
+.modal-navigation .btn-next-step:disabled {
+  /* Estado desabilitado */
+  background-color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Modal de Login */
+#modalLogin .login-opcoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+  margin: 12px 0 18px 0;
+}
+
+#modalLogin .lembrar-me {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #5f87ae;
+}
+
+#modalLogin .lembrar-me input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+#modalLogin .esqueci-senha {
+  color: #007ac2;
+  text-decoration: none;
+}
+
+#modalLogin .esqueci-senha:hover {
+  text-decoration: underline;
+}
+
+#modalLogin .link-cadastro-modal {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 1.05em;
+  color: #5f87ae;
+}
+
+#modalLogin .link-cadastro-modal a {
+  color: #007ac2;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#modalLogin .link-cadastro-modal a:hover {
+  text-decoration: underline;
+}
+
+#modalLogin .login-hint {
+  /* Dica sutil no modal de login */
+  font-size: 1em;
+  color: #7a9bbd;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Modal de Recuperar Senha e Contato */
+.modal-description {
+  /* DescriÃ§Ã£o geral para modais */
+  font-size: 1.05em;
+  color: #5f87ae;
+  margin-bottom: 25px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+#modalRecuperarSenha .link-voltar-login,
+#modalContato .link-voltar-login {
+  /* Link para voltar ao login */
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.05em;
+}
+
+#modalRecuperarSenha .link-voltar-login a,
+#modalContato .link-voltar-login a {
+  color: #007ac2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#modalRecuperarSenha .link-voltar-login a:hover,
+#modalContato .link-voltar-login a:hover {
+  text-decoration: underline;
+}
+
+/* Barra de SeguranÃ§a da Senha e Requisitos */
+#barraSegurancaContainer,
+#requisitosSenha {
+  display: none;
+  /* ComeÃ§am escondidos */
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+#barraSegurancaContainer.visible,
+#requisitosSenha.visible {
+  display: block;
+  /* Mostra quando o input de senha recebe foco */
+}
+
+.requisitos-senha.visible {
+  font-size: 0.95em;
+}
+
+.requisitos-senha ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.requisitos-senha li {
+  color: #e74c3c;
+  /* Vermelho para incompleto */
+  margin-bottom: 2px;
+}
+
+.requisitos-senha li.completo {
+  color: #b3d89c;
+  /* Verde para completo */
+}
+
+.requisitos-senha li::before {
+  content: "â€¢ ";
+  /* Ponto para incompleto */
+}
+
+.requisitos-senha li.completo::before {
+  content: "âœ“ ";
+  /* Check para completo */
+  font-weight: bold;
+}
+
+.barra-seguranca.visible {
+  /* Estilo da barra de seguranÃ§a */
+  width: 100%;
+  height: 5px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#nivelSeguranca {
+  /* Barra interna que indica o nÃ­vel */
+  height: 100%;
+  background-color: #e74c3c;
+  /* Cor inicial (baixo) */
+  width: 0%;
+  /* ComeÃ§a vazia */
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+#nivelSeguranca.nivel-baixo {
+  width: 25%;
+  background-color: #e74c3c;
+}
+
+#nivelSeguranca.nivel-fraco {
+  width: 50%;
+  background-color: #f39c12;
+}
+
+#nivelSeguranca.nivel-medio {
+  width: 75%;
+  background-color: #f1c40f;
+}
+
+#nivelSeguranca.nivel-forte {
+  width: 100%;
+  background-color: #b3d89c;
+}
+
+
+/* Overlay e Mensagem de "ParabÃ©ns" (Cadastro ConcluÃ­do) */
+.congrats-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  /* Acima de outros modais */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.congrats-overlay:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.congrats-message-box {
+  background-color: #fff;
+  padding: 40px 45px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+  max-width: 520px;
+  width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.congrats-overlay:not(.hidden) .congrats-message-box {
+  transform: scale(1);
+}
+
+.congrats-icon {
+  font-size: 4em;
+  color: #b3d89c;
+  /* Verde sucesso */
+  display: block;
+  margin-bottom: 25px;
+}
+
+#congratsTitle {
+  font-size: 2.05em;
+  color: #007ac2;
+  /* Azul EasyCare */
+  margin-bottom: 15px;
+}
+
+#congratsText {
+  font-size: 1.25em;
+  color: #5f87ae;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+#congratsCloseBtn {
+  background-color: #007ac2;
+  /* Azul EasyCare */
+  color: #fefae0;
+  padding: 0.9em 1.9em;
+  font-size: 1.1em;
+  border-radius: 1.6em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.3;
+}
+
+#congratsCloseBtn:hover {
+  background-color: #005c9a;
+  /* Azul mais escuro */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal de Aviso (Login/Cadastro) e ConfirmaÃ§Ã£o */
+#modalAvisoLoginCadastro .modal-content,
+#modalConfirmarIrParaBusca .modal-content {
+  max-width: 540px;
+  padding: 35px 45px;
+}
+
+#modalConfirmarIrParaBusca #confirmarBuscaTitle {
+  /* TÃ­tulo especÃ­fico do modal de confirmaÃ§Ã£o */
+  font-size: 1.75em;
+  color: #4d7298;
+  margin-bottom: 15px;
+}
+
+#modalAvisoLoginCadastro .modal-navigation button,
+#modalConfirmarIrParaBusca .modal-navigation button {
+  flex: 1;
+  /* BotÃµes ocupam espaÃ§o igual */
+  padding: 0.9em 1.6em;
+  font-size: 1.1em;
+  border-radius: 1.8em;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  line-height: 1.3;
+}
+
+#modalAvisoLoginCadastro .modal-navigation button:hover,
+#modalConfirmarIrParaBusca .modal-navigation button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* BotÃµes especÃ­ficos para o modal de aviso */
+#modalAvisoLoginCadastro .btn-primary {
+  /* BotÃ£o "Cadastre-se" */
+  background-color: #b3d89c;
+  border-color: #b3d89c;
+  color: #4d7298;
+}
+
+#modalAvisoLoginCadastro .btn-primary:hover {
+  background-color: #9bc882;
+  border-color: #9bc882;
+}
+
+#modalAvisoLoginCadastro .btn-secondary {
+  /* BotÃ£o "Fazer Login" */
+  background-color: #f0f0f0;
+  border-color: #ccc;
+  color: #4d7298;
+}
+
+#modalAvisoLoginCadastro .btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* BotÃ£o especÃ­fico para o modal de confirmaÃ§Ã£o */
+#modalConfirmarIrParaBusca .btn-primary {
+  /* BotÃ£o "Ir para Match/Busca" */
+  background-color: #007ac2;
+  border-color: #007ac2;
+  color: #fefae0;
+}
+
+#modalConfirmarIrParaBusca .btn-primary:hover {
+  background-color: #005c9a;
+  border-color: #005c9a;
+}
+
+
+/* Media Queries para Responsividade */
+@media (max-width: 1080px) {
+
+  /* Tablet e telas menores */
+  html {
+    font-size: 115%;
+    /* Reduz um pouco a base para telas menores */
+  }
+
+  .topo {
+    display: grid;
+    /* Muda para grid para melhor controle do logo e menu */
+    grid-template-columns: auto 1fr auto;
+    /* EspaÃ§o para logo no centro, menu e botÃµes nas laterais */
+    align-items: center;
+    min-height: 110px;
+    /* Altura do header ajustada */
+    padding: 10px 20px;
+    /* Padding ajustado */
+  }
+
+  .topo .logo {
+    grid-column: 2 / 3;
+    /* Coloca o logo na coluna central */
+    justify-self: center;
+    /* Centraliza o logo */
+    margin-right: 0;
+  }
+
+  .topo .logo img {
+    height: 90px;
+    /* Tamanho do logo ajustado */
+    margin-right: 0;
+  }
+
+  .menu-hamburguer {
+    display: flex;
+    /* Mostra o menu hamburguer */
+    grid-column: 3 / 4;
+    /* Coloca o menu hamburguer na Ãºltima coluna */
+    justify-self: end;
+    /* Alinha Ã  direita */
+  }
+
+  .topo .botoes.desktop-only {
+    display: none;
+    /* Esconde botÃµes de desktop */
+  }
+
+  .topo nav#main-navigation {
+    display: none;
+    /* Menu principal escondido por padrÃ£o */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    /* Logo abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: #fdfcf0e8;
+    /* Fundo com leve transparÃªncia */
+    backdrop-filter: blur(5px);
+    /* Efeito de desfoque */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    /* Acima do conteÃºdo */
+    border-top: 1px solid #edeae0;
+    max-height: calc(100vh - 110px);
+    /* Altura mÃ¡xima do menu dropdown */
+    overflow-y: auto;
+    /* Scroll se o menu for muito grande */
+  }
+
+  .topo nav#main-navigation.menu-aberto {
+    display: flex;
+    /* Mostra o menu quando aberto */
+  }
+
+  .topo nav#main-navigation ul {
+    flex-direction: column;
+    /* Links em coluna */
+    width: 100%;
+    align-items: stretch;
+    /* Links ocupam toda a largura */
+    gap: 0;
+  }
+
+  .topo nav#main-navigation ul li a {
+    display: block;
+    /* Links como bloco */
+    padding: 18px 25px;
+    text-align: left;
+    /* Alinha texto Ã  esquerda */
+    border-bottom: 1px solid #e0e7ee;
+    /* Linha separadora */
+    width: 100%;
+    font-size: 1.2rem;
+    /* Tamanho da fonte no menu mobile */
+    font-weight: 500;
+    color: #4d7298;
+    border-left: 3px solid transparent;
+    /* Para efeito de hover/active */
+    border-bottom-width: 1px;
+    /* Garante que a borda inferior nÃ£o seja a de 3px */
+  }
+
+  .topo nav#main-navigation ul li a:hover,
+  .topo nav#main-navigation ul li a.active {
+    background-color: #e0e7ee80;
+    /* Fundo suave no hover/active */
+    color: #007ac2;
+    border-left-color: #007ac2;
+    /* Destaque na lateral */
+    border-bottom-color: #e0e7ee;
+    /* MantÃ©m a linha separadora */
+  }
+
+  .topo nav#main-navigation ul li a.active {
+    font-weight: 600;
+  }
+
+  .topo nav#main-navigation ul li:last-child a {
+    /* Remove borda do Ãºltimo item */
+    border-bottom: none;
+  }
+
+  .mobile-only {
+    display: list-item !important;
+    /* Mostra os botÃµes no menu mobile */
+  }
+
+  .topo nav#main-navigation ul li.nav-button-item {
+    padding: 15px 25px;
+    border-top: 1px solid #e0e7ee;
+    /* Linha acima dos botÃµes */
+  }
+
+  .topo nav#main-navigation ul li .btn-nav-mobile {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 2px solid #007ac2;
+    color: #007ac2;
+    background: transparent;
+    text-align: center;
+    border-radius: 22px;
+    /* Raio da borda */
+  }
+
+  .topo nav#main-navigation ul li .btn-nav-mobile:hover {
+    background-color: #007ac2;
+    color: #fdfcf0;
+  }
+
+  .hero {
+    min-height: calc(100vh - 110px);
+  }
+
+  /* Ajusta altura do hero */
+  .hero-container-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-text-and-button-wrapper {
+    order: 1;
+    display: contents;
+    /* Faz os filhos se comportarem como se fossem filhos diretos do flex container */
+  }
+
+  .hero-text-content {
+    order: 1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .hero-image-collage-container {
+    order: 2;
+    flex-basis: auto;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    min-height: 350px;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  .hero-button-wrapper {
+    order: 3;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-button-wrapper .btn-cta {
+    display: inline-block;
+    width: auto;
+  }
+
+  .image-large-wrapper {
+    height: 320px;
+    padding: 15px;
+    border-radius: 22px;
+  }
+
+  .img-elderly {
+    border-radius: 15px;
+  }
+
+  .image-small-top-wrapper {
+    width: 160px;
+    height: 200px;
+    padding: 12px;
+    border-radius: 18px;
+    left: 5%;
+    top: 10%;
+    transform: translateY(0);
+  }
+
+  .img-child-smiling {
+    border-radius: 12px;
+  }
+
+  .image-small-bottom-wrapper {
+    width: 110px;
+    height: 110px;
+    padding: 10px;
+    border-radius: 15px;
+    left: auto;
+    right: 5%;
+    bottom: 5%;
+    transform: translateY(0);
+  }
+
+  .img-child-wheelchair {
+    border-radius: 10px;
+  }
+
+  .finding-options-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .finding-option-card {
+    min-width: 90%;
+    max-width: 400px;
+    /* Ajusta para telas menores */
+  }
+}
+
+/* Ajustes para telas muito pequenas, refinando o modo tablet */
+@media (max-width: 767px) {
+  html {
+    font-size: 100%;
+    /* Base menor para telas pequenas */
+  }
+
+  .topo {
+    min-height: 110px;
+    padding: 10px 15px;
+    grid-template-columns: 40px 1fr 40px;
+  }
+
+  .topo .logo img {
+    height: 90px;
+  }
+
+  .topo nav#main-navigation {
+    max-height: calc(100vh - 110px);
+  }
+
+  .topo nav#main-navigation ul li a {
+    font-size: 1.1rem;
+    padding: 15px 20px;
+  }
+
+  .menu-hamburguer {
+    width: 30px;
+    height: 26px;
+  }
+
+  .menu-hamburguer.aberto .hamburguer-linha:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+
+  .menu-hamburguer.aberto .hamburguer-linha:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+  }
+
+  .hero {
+    min-height: calc(100vh - 110px);
+  }
+
+  .hero-text-content h2 {
+    font-size: clamp(2.6em, 7.8vw, 3.64em);
+  }
+
+  /* TÃ­tulos maiores ainda possÃ­veis */
+  .hero-text-content p.hero-subtitle {
+    font-size: clamp(1.235em, 4.55vw, 1.43em);
+  }
+
+  .btn-cta {
+    padding: 0.9em 1.9em;
+    font-size: 1.1em;
+  }
+
+  .hero-image-collage-container {
+    min-height: auto;
+    max-width: 360px;
+    height: 380px;
+  }
+
+  /* Ajuste para colagem de imagens */
+  .image-large-wrapper {
+    height: 90%;
+    width: 65%;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .img-elderly {
+    border-radius: 12px;
+  }
+
+  .image-small-top-wrapper {
+    width: 35%;
+    max-width: 110px;
+    aspect-ratio: 110 / 150;
+    padding: 6px;
+    border-radius: 15px;
+    left: 2%;
+    top: 8%;
+  }
+
+  .img-child-smiling {
+    border-radius: 10px;
+  }
+
+  .image-small-bottom-wrapper {
+    width: 28%;
+    max-width: 90px;
+    aspect-ratio: 1/1;
+    padding: 5px;
+    border-radius: 12px;
+    left: auto;
+    right: 5%;
+    bottom: 2%;
+  }
+
+  .img-child-wheelchair {
+    border-radius: 8px;
+  }
+
+  .section-title {
+    font-size: clamp(2.08em, 6.5vw, 2.86em);
+  }
+
+  .subsection-title {
+    font-size: clamp(1.69em, 5.2vw, 2.08em);
+  }
+
+  .section-description {
+    font-size: clamp(1.17em, 3.9vw, 1.3em);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    /* Uma coluna em telas pequenas */
+  }
+
+  .service-card,
+  .video-placeholder.video-container-actual {
+    padding: 20px;
+  }
+
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .service-card h3 {
+    font-size: 1.2em;
+  }
+
+  .modal-content {
+    padding: 20px 25px;
+    max-width: 95%;
+  }
+
+  .modal-content h2 {
+    font-size: 1.7em;
+  }
+
+  .modal-content form label {
+    font-size: 1rem;
+  }
+
+  .modal-content form input,
+  .modal-content form textarea,
+  .modal-content form select {
+    font-size: 1em;
+    padding: 10px 12px;
+  }
+
+  .congrats-message-box {
+    padding: 30px 25px;
+  }
+
+  #congratsTitle {
+    font-size: 1.8em;
+  }
+
+  #congratsText {
+    font-size: 1.15em;
+  }
+
+  #modalAvisoLoginCadastro .modal-navigation button,
+  #modalConfirmarIrParaBusca .modal-navigation button {
+    font-size: 1em;
+    padding: 0.8em 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Celulares menores */
+  html {
+    font-size: 95%;
+    /* Reduz base para caber mais em telas muito pequenas */
+  }
+
+  .topo {
+    min-height: 70px;
+    grid-template-columns: 30px 1fr 30px;
+    padding: 5px 15px;
+  }
+
+  .topo .logo img {
+    height: 50px;
+  }
+
+  .topo nav#main-navigation {
+    max-height: calc(100vh - 70px);
+  }
+
+  .topo nav#main-navigation ul li a {
+    font-size: 1rem;
+    padding: 14px 20px;
+  }
+
+  .menu-hamburguer {
+    width: 28px;
+    height: 24px;
+  }
+
+  .menu-hamburguer.aberto .hamburguer-linha:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+
+  .menu-hamburguer.aberto .hamburguer-linha:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  .hero {
+    min-height: calc(100vh - 70px);
+  }
+
+  .hero-text-content h2 {
+    font-size: clamp(2.2em, 7vw, 3em);
+  }
+
+  .hero-text-content p.hero-subtitle {
+    font-size: clamp(1.1em, 4vw, 1.3em);
+  }
+
+  .hero-image-collage-container {
+    height: 320px;
+    max-width: 90vw;
+  }
+
+  .image-large-wrapper {
+    padding: 6px;
+    border-radius: 15px;
+  }
+
+  .img-elderly {
+    border-radius: 10px;
+  }
+
+  .image-small-top-wrapper {
+    width: 38%;
+    max-width: 100px;
+    padding: 5px;
+    border-radius: 12px;
+    left: 1%;
+    top: 5%;
+  }
+
+  .img-child-smiling {
+    border-radius: 8px;
+  }
+
+  .image-small-bottom-wrapper {
+    width: 28%;
+    max-width: 80px;
+    padding: 4px;
+    border-radius: 10px;
+    right: 2%;
+    bottom: 1%;
+  }
+
+  .img-child-wheelchair {
+    border-radius: 6px;
+  }
+
+  .modal-content {
+    padding: 20px 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.6em;
+  }
+
+  .modal-content form label {
+    font-size: 0.95rem;
+  }
+
+  .modal-content form input,
+  .modal-content form textarea,
+  .modal-content form select {
+    font-size: 0.95em;
+  }
+
+  .modal-description {
+    font-size: 1em;
+  }
+
+  #congratsTitle {
+    font-size: 1.7em;
+  }
+
+  #congratsText {
+    font-size: 1.1em;
+  }
+
+  #modalAvisoLoginCadastro .modal-navigation button,
+  #modalConfirmarIrParaBusca .modal-navigation button {
+    font-size: 1em;
+    padding: 0.8em 1.2em;
+  }
+
+}

@@ -1,0 +1,799 @@
+/* Styles/perfil.css */
+
+/* Estilos Gerais da Página de Perfil */
+.perfil-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Coluna da Esquerda: Informações da Conta e Segurança */
+.perfil-coluna-info-geral {
+    position: sticky;
+    top: 20px;
+    /* Ajuste conforme altura do seu header fixo */
+}
+
+.perfil-coluna-info-geral .card-estilo-painel h3 {
+    /* Estilo para H3 dentro dos cards da coluna esquerda */
+    color: #007ac2;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e7ee;
+    font-size: 1.3em;
+}
+
+.perfil-foto-container-lateral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 10px;
+}
+
+.perfil-foto-preview-lateral {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #b3d89c;
+    /* Verde suave */
+    background-color: #e9f0f7;
+    /* Azul bem claro */
+}
+
+.btn-alterar-foto-lateral {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    border-color: #007ac2;
+    /* Azul principal */
+    color: #007ac2;
+    background: transparent;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-alterar-foto-lateral:hover {
+    background-color: #007ac2;
+    color: #fdfcf0;
+    /* Cor de texto clara para contraste */
+}
+
+.nome-arquivo-foto {
+    font-size: 0.8rem;
+    color: #5f87ae;
+    /* Azul acinzentado */
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+    word-break: break-all;
+}
+
+/* Classe global para ocultar elementos via JS */
+.hidden-input {
+    display: none !important;
+}
+
+/* Estilos para inputs readonly (ex: e-mail em InfoGeral) */
+.input-painel[readonly] {
+    background-color: #f0f4f8;
+    /* Fundo levemente diferente */
+    color: #5f87ae;
+    cursor: not-allowed;
+    border-color: #d1d9e2;
+}
+
+.form-grupo-painel p {
+    /* Estilo para os <p> que exibem dados */
+    margin-bottom: 5px;
+    color: #333;
+    /* Cor de texto padrão para visualização */
+    line-height: 1.5;
+}
+
+/* Descrição de campo (usado nos formulários de segurança) */
+.descricao-campo {
+    font-size: 0.9em;
+    color: #5f87ae;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+
+/* === AJUSTES E NOVOS ESTILOS PARA PERFIL PÚBLICO (COLUNA DA DIREITA) === */
+.perfil-coluna-edicao-match {
+    /* O card-estilo-painel já dá um padding. 
+       Se o preview-card-match for o único conteúdo direto, pode não precisar de padding aqui. */
+}
+
+.perfil-coluna-edicao-match>div>h4 {
+    /* Título "Seu Perfil Público" (se estiver dentro de um div wrapper) */
+    font-size: 1.3em;
+    color: #007ac2;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Se o H4 estiver diretamente sob .perfil-coluna-edicao-match.card-estilo-painel */
+.perfil-coluna-edicao-match.card-estilo-painel>div:first-child>h4 {
+    margin-top: 0;
+    /* Remove margem do topo se for o primeiro título */
+}
+
+
+/* Estilizando o #perfilPublicoView para centralizar o card */
+#perfilPublicoView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza o preview-card-match se ele tiver max-width */
+}
+
+.preview-card-match {
+    /* Card principal do perfil público "estilo Tinder" */
+    background-color: #fff;
+    border: 1px solid #e0e7ee;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 0;
+    width: 100%;
+    max-width: 380px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-fotos-match {
+    /* Container da imagem/carrossel no topo do card */
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4.5;
+    /* Proporção de retângulo vertical */
+    background-color: #e9f0f7;
+    overflow: hidden;
+}
+
+#previewFotoPrincipalMatch {
+    /* A imagem principal exibida */
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border-top-left-radius: 12px;  Removido pois o container .preview-fotos-match já tem overflow:hidden */
+    /* border-top-right-radius: 12px; */
+}
+
+.btn-alterar-foto-sobreposta {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    z-index: 2;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-alterar-foto-sobreposta:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.btn-alterar-foto-sobreposta i {
+    margin-right: 8px;
+}
+
+
+/* Informações textuais dentro do card */
+#previewNomeIdadeMatch {
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+    margin-top: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding: 0 20px;
+    /* Adicionado padding lateral */
+}
+
+.perfil-publico-info-detalhada {
+    padding: 0 20px 20px 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.perfil-publico-info-detalhada p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.perfil-publico-info-detalhada p strong {
+    color: #333;
+    font-weight: 500;
+}
+
+.perfil-publico-info-detalhada h5 {
+    /* Subtítulos como "O que busca..." */
+    font-size: 1em;
+    color: #007ac2;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.perfil-publico-info-detalhada h5 i {
+    margin-right: 6px;
+}
+
+.preview-bio {
+    font-size: 0.9em;
+    color: #5f87ae;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    min-height: 3em;
+    margin-bottom: 15px;
+}
+
+.tags-container-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+    min-height: 20px;
+    margin-bottom: 15px;
+}
+
+.tag-item-preview {
+    background-color: #e9f0f7;
+    color: #4d7298;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85em;
+}
+
+.tag-item-preview.placeholder-tag {
+    background-color: transparent;
+    color: #7a9bbd;
+    font-style: italic;
+    padding: 5px 0;
+}
+
+
+/* Botão de Editar Informações Textuais (ao lado do título "Seu Perfil Público") */
+.btn-sm-icon {
+    padding: 6px 12px;
+    font-size: 0.9em;
+}
+
+
+/* Formulário de Edição de Informações Textuais e Gerenciador de Fotos no Modal */
+#formEditarInfoTextualPublica fieldset {
+    margin-bottom: 20px;
+    border: 1px solid #e0e7ee;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#formEditarInfoTextualPublica fieldset legend {
+    font-weight: 600;
+    color: #007ac2;
+    padding: 0 8px;
+    font-size: 1.1em;
+}
+
+#formEditarInfoTextualPublica .input-sm {
+    padding: 6px 10px;
+    font-size: 0.9em;
+}
+
+/* Gerenciador de Fotos na Edição (usado no MODAL) */
+.gerenciador-fotos-perfil {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.slot-foto {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background-color: #e9f0f7;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px dashed #d0dce8;
+}
+
+.slot-foto.principal {
+    border: 3px dashed #007ac2;
+}
+
+.slot-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.btn-adicionar-foto-match {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #007ac2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.btn-adicionar-foto-match:hover {
+    background-color: #005f99;
+}
+
+.btn-remover-foto-match {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(231, 76, 60, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 0.8em;
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.btn-remover-foto-match.hidden {
+    display: none;
+}
+
+.gerenciador-fotos-perfil+small {
+    font-size: 0.85em;
+    color: #7a9bbd;
+    display: block;
+    margin-top: 5px;
+}
+
+#contadorBuscaProfissionalForm {
+    font-weight: 500;
+}
+
+/* Container de Tags Editáveis (Cidades de Atendimento) */
+.tags-container-editor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    margin-top: 5px;
+    min-height: 40px;
+}
+
+.tag-item-editor {
+    background-color: #007ac2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+.tag-item-editor .remover-tag {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #e0e7ee;
+}
+
+.tag-item-editor .remover-tag:hover {
+    color: #fdfcf0;
+}
+
+/* Checkboxes para Especialidades (no formulário de edição) */
+.checkbox-container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+.checkbox-container-grid .checkbox-item-painel label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95em;
+    color: #4d7298;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checkbox-container-grid .checkbox-item-painel label:hover {
+    background-color: #e9f0f7;
+}
+
+.checkbox-container-grid input[type="checkbox"] {
+    width: auto;
+    margin-right: 0;
+    accent-color: #007ac2;
+    flex-shrink: 0;
+}
+
+/* --- ESTILOS PARA O MODAL (Gerenciador de Fotos) --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease-out, visibility 0s linear 0.25s;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.25s ease-out;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px 25px 25px 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(-20px) scale(0.98);
+    transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+    opacity: 0;
+}
+
+.modal-backdrop.active .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e7ee;
+    margin-bottom: 20px;
+}
+
+.modal-header h4 {
+    margin: 0;
+    font-size: 1.3em;
+    color: #007ac2;
+    font-weight: 600;
+}
+
+.btn-fechar-modal {
+    background: none;
+    border: none;
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.btn-fechar-modal:hover {
+    color: #555;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-footer {
+    text-align: right;
+    padding-top: 20px;
+    border-top: 1px solid #e0e7ee;
+    margin-top: 20px;
+}
+
+#gerenciadorFotosContainerModal.gerenciador-fotos-perfil {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 colunas para 6 fotos */
+    gap: 15px;
+}
+
+#gerenciadorFotosContainerModal .slot-foto {
+    aspect-ratio: 3 / 4;
+    min-height: 120px;
+}
+
+
+/* --- OUTROS ESTILOS (Responsividade, Menu, Footer - Mantidos) --- */
+@media (max-width: 992px) {
+    .perfil-layout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil-coluna-info-geral {
+        position: static;
+        margin-bottom: 30px;
+        top: auto;
+    }
+
+    .preview-card-match {
+        max-width: 450px;
+        margin-left: auto;
+        /* Centraliza se a coluna ficar mais larga */
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #gerenciadorFotosContainerModal.gerenciador-fotos-perfil {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .checkbox-container-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .perfil-coluna-edicao-match .card-estilo-painel h4,
+    /* Título "Seu Perfil Público" */
+    .modal-header h4 {
+        font-size: 1.2em;
+    }
+
+    #previewNomeIdadeMatch {
+        font-size: 1.3em;
+    }
+
+    .preview-card-match {
+        /* Em telas muito pequenas, ocupa a largura total */
+        max-width: 100%;
+    }
+}
+
+/* Estilos para a exibição simplificada do perfil */
+.perfil-info-container {
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    /* Limita a largura para melhor leitura */
+    margin: 20px auto;
+    /* Centraliza o card de informações */
+}
+
+.perfil-foto-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.perfil-foto-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* Foto circular */
+    object-fit: cover;
+    /* Garante que a imagem cubra bem o espaço */
+    border: 4px solid #007ac2;
+    /* Borda com a cor primária */
+    background-color: #e0e0e0;
+    /* Cor de fundo para placeholder */
+}
+
+.info-item {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que o valor quebre para a próxima linha em telas pequenas */
+    align-items: center;
+    /* Alinha ícone, label e valor verticalmente */
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1em;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #333;
+    margin-right: 10px;
+    flex-shrink: 0;
+    /* Impede que o label encolha demais */
+    min-width: 150px;
+    /* Ajuste conforme necessário */
+}
+
+.info-label i {
+    margin-right: 8px;
+    color: #007ac2;
+    /* Cor dos ícones */
+    width: 20px;
+    /* Para alinhar os ícones */
+    text-align: center;
+}
+
+.info-valor {
+    color: #555;
+    word-break: break-word;
+    /* Para quebrar e-mails ou telefones longos */
+}
+
+.texto-suporte-painel {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Menu e Footer (mantidos do CSS original) */
+.painel-navigation {
+    display: none; /* Por padrão, escondido para mobile-first, JS ou .menu-aberto controlará */
+}
+
+/* Estilo para quando o menu está explicitamente aberto (controlado por JS ao clicar no hambúrguer) */
+.painel-navigation.menu-aberto {
+    display: block !important; /* Garante que seja exibido */
+    width: 100%; /* Ocupa a largura toda no mobile */
+    position: absolute; /* Posicionamento para sobrepor o conteúdo */
+    top: 100%; /* Logo abaixo do header */
+    left: 0;
+    background-color: #fff; /* Cor de fundo para o menu dropdown */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000; /* Para ficar acima de outros conteúdos */
+}
+
+.painel-navigation.menu-aberto ul {
+    display: flex;
+    flex-direction: column; /* Links empilhados verticalmente no mobile */
+    padding: 10px 0;
+}
+
+.painel-navigation.menu-aberto ul li {
+    margin: 0;
+    width: 100%;
+}
+
+.painel-navigation.menu-aberto ul li a {
+    display: block;
+    padding: 12px 20px; /* Espaçamento interno dos links */
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; /* Linha divisória entre os links */
+    color: #333; /* Cor do texto do link */
+}
+.painel-navigation.menu-aberto ul li a:hover {
+    background-color: #f8f8f8; /* Cor de fundo no hover */
+}
+
+.painel-navigation.menu-aberto ul li:last-child a {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+
+.painel-menu-hamburguer .hamburguer-linha {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.painel-menu-hamburguer.aberto .hamburguer-linha:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.painel-menu-hamburguer.aberto .hamburguer-linha:nth-child(2) {
+    opacity: 0;
+}
+
+.painel-menu-hamburguer.aberto .hamburguer-linha:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (min-width: 769px) {
+    .painel-menu-hamburguer {
+        display: none;
+    }
+
+    .painel-navigation {
+        display: block; /* Sempre visível no desktop */
+        width: auto;     /* Largura automática para acomodar os links */
+        position: static; /* Volta ao fluxo normal do documento */
+        background: transparent;
+        box-shadow: none; /* Remove sombra se houver do mobile */
+    }
+
+    .painel-navigation ul {
+        display: flex;
+        flex-direction: row; /* Links lado a lado no desktop */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .painel-navigation ul li {
+        margin-left: 15px; /* Espaçamento entre os links */
+        width: auto; /* Largura automática para cada item */
+    }
+    
+    .painel-navigation ul li:first-child {
+        margin-left: 0; /* Remove margem do primeiro item se necessário */
+    }
+
+    .painel-navigation ul li a {
+        padding: 8px 10px; /* Ajuste o padding dos links no desktop se necessário */
+        border-bottom: none; /* Remove bordas inferiores se aplicadas no mobile */
+    }
+    
+    /* Se a classe .nav-link-painel define o estilo do link, esta regra acima pode não ser necessária
+       ou pode precisar ser ajustada para complementar .nav-link-painel */
+
+    .painel-navigation .mobile-only { /* Classe para elementos que só aparecem em mobile */
+        display: none !important;
+    }
+}
+
+.footer {
+    background-color: #3a5975;
+    color: #e9f0f7;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+.footer .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 5px 0;
+}

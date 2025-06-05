@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Easy Care - Encontre seu Contato Ideal</title>
+  <link rel="stylesheet" href="Styles/home.css" />
+  <link rel="stylesheet" href="Styles/estilos_painel.css" />
+  <link rel="stylesheet" href="Styles/match.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="painelClienteLogado">
+    <header class="topo painel-cliente-header">
+      <div class="logo">
+        <a href="index.html">
+        <img src="Images/LogoEasyCare.png" alt="Logótipo Easy Care"
+          onerror="this.src='https://placehold.co/130x40/fefcdf/2f4f2f?text=Easy+Care+Logo'; this.alt='Logótipo Easy Care Placeholder'" />
+        </a></div>
+      <div class="contexto-busca-header">
+        Buscando para:
+        <span id="nomeContextoBuscaHeader">Você (Titular)</span>
+        <button id="btnAlterarContextoBusca" class="btn-icone-painel">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+
+      <nav id="painel-navigation-cliente" class="painel-navigation">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-link-painel"><i class="fas fa-home icone-nav"></i> Início</a>
+          </li>
+          <li>
+            <a href="perfil.html" class="nav-link-painel"><i class="fas fa-user-circle icone-nav"></i> Meu Perfil</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link-painel"><i class="fas fa-bell icone-nav"></i> Notificações</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link-painel"><i class="fas fa-cog icone-nav"></i> Configurações</a>
+          </li>
+          <li class="nav-button-item">
+            <button id="btnSairPainel" class="btn-sair-painel">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-right-mobile">
+        <span class="nome-usuario-header-mobile">Olá, Usuário!</span>
+        <button class="menu-hamburguer-painel" aria-label="Abrir menu" aria-expanded="false"
+          aria-controls="painel-navigation-cliente">
+          <span class="hamburguer-linha-painel"></span>
+          <span class="hamburguer-linha-painel"></span>
+          <span class="hamburguer-linha-painel"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="painel-cliente-conteudo">
+      <div class="match-container">
+        <section class="match-content">
+          <h2 id="matchListTitle">Carregando Perfis...</h2>
+          <div class="profile-cards-container">
+            <div class="profile-card no-more-profiles" style="display: none;">
+              <h3>Não há mais perfis com esses critérios.</h3>
+              <p>Tente ajustar seus filtros ou volte mais tarde.</p>
+            </div>
+          </div>
+          <div class="match-actions">
+            <button id="dislikeBtn" class="action-btn dislike" aria-label="Rejeitar">
+              <i class="fas fa-times"></i>
+            </button>
+            <button id="likeBtn" class="action-btn like" aria-label="Conversar">
+              <i class="fas fa-heart"></i>
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="painel-cliente-footer">
+      <p>&copy; 2025 Easy Care. Todos os direitos reservados.</p>
+      <nav class="footer-nav">
+        <a href="#">Termos de Serviço</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Ajuda</a>
+      </nav>
+    </footer>
+  </div>
+  <script src="Script/script_match.js"></script>
+</body>
+
+</html>

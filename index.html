@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Easy Care</title>
+  <link rel="stylesheet" href="Styles/home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <script>
+    (function () {
+      // Seleciona todas as modais e elementos com a classe 'hidden' que não são modais de erro
+      const elementsToHide = document.querySelectorAll('.modal, .hidden:not(.error-message)');
+      elementsToHide.forEach(el => {
+        // Se o elemento não tiver a classe 'hidden' mas deveria estar escondido, adicione-a
+        if (!el.classList.contains('hidden') && el.style.display !== 'none') {
+          el.classList.add('hidden');
+        }
+        // Para modais, force display none também no estilo inline para maior certeza
+        if (el.classList.contains('modal')) {
+          el.style.display = 'none';
+        }
+      });
+      // Opcional: Para evitar fosco antes do CSS, se houver um loader inicial
+      const conteudoPrincipal = document.getElementById("conteudoPrincipal");
+      if (conteudoPrincipal && conteudoPrincipal.classList.contains("fosco")) {
+        conteudoPrincipal.classList.remove("fosco");
+      }
+    })();
+  </script>
+  <div id="conteudoPrincipal">
+    <header class="topo">
+      <div class="logo">
+        <a href="index.html"> <img src="Images/LogoEasyCare.png" alt="Logótipo Easy Care"
+            onerror="this.src='https://placehold.co/130x40/fefcdf/2f4f2f?text=Easy+Care+Logo'; this.alt='Logótipo Easy Care Placeholder'" />
+        </a>
+      </div>
+
+      <button class="menu-hamburguer" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-navigation">
+        <span class="hamburguer-linha"></span>
+        <span class="hamburguer-linha"></span>
+        <span class="hamburguer-linha"></span>
+      </button>
+
+      <nav id="main-navigation">
+        <ul>
+          <li><a href="#inicio" class="active">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#como-usar">Como Usar</a></li>
+          <li>
+            <a href="#como-encontrar">Encontre o Correspondente Ideal</a>
+          </li>
+          <li><a href="#suporte">Suporte</a></li>
+          <li class="nav-button-item mobile-only">
+            <button class="btn contorno btn-nav-mobile" id="navCadastreSeBtn">
+              Cadastre-se
+            </button>
+          </li>
+          <li class="nav-button-item mobile-only">
+            <button class="btn contorno btn-nav-mobile" id="navEntrarBtn">
+              Entrar
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div class="botoes desktop-only">
+        <button class="btn contorno" id="headerCadastreSeBtn">
+          Cadastre-se
+        </button>
+        <button class="btn contorno" id="headerEntrarBtn">Entrar</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container hero-container-flex">
+          <div class="hero-text-and-button-wrapper">
+            <div class="hero-text-content">
+              <h2>Cuide bem de quem te faz bem</h2>
+              <p class="hero-subtitle">
+                Conectamos você aos melhores cuidadores para idosos e pessoas
+                com deficiência (PCDs), com segurança e carinho.
+              </p>
+            </div>
+            <div class="hero-button-wrapper">
+              <button class="btn btn-cta" id="heroCadastreSeBtn">
+                Cadastre-se Agora
+              </button>
+            </div>
+          </div>
+          <div class="hero-image-collage-container">""
+            <div class="image-large-wrapper">
+              <img src="Images/img2.jpeg" alt="Senhora idosa com cuidadora" class="img-elderly"
+                onerror="this.src='https://placehold.co/600x400/bfd9e2/ffffff?text=Cuidado+Idosos'; this.alt='Placeholder Cuidado Idosos'" />
+            </div>
+            <div class="image-small-top-wrapper">
+              <img src="Images/img4.jpeg" alt="Bem estar e alegria no cuidado" class="img-child-smiling"
+                onerror="this.src='https://placehold.co/200x250/d8e8ce/ffffff?text=Bem+Estar'; this.alt='Placeholder Bem Estar'" />
+            </div>
+            <div class="image-small-bottom-wrapper">
+              <img src="Images/img1.jpeg" alt="Cuidado especializado para PCD" class="img-child-wheelchair"
+                onerror="this.src='https://placehold.co/130x130/ffffff/2c3e50?text=Apoio+PCD'; this.alt='Placeholder Apoio PCD'" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about" id="sobre">
+        <div class="container">
+          <h2 class="section-title">Sobre Nós</h2>
+          <div class="about-content-wrapper">
+            <div class="about-text">
+              <p class="section-description" style="text-align: left; margin-bottom: 20px">
+                A Easy Care é uma plataforma inovadora projetada para atender
+                tanto à demanda de serviços oferecidos por cuidadores quanto à
+                procura por parte dos clientes. Nosso objetivo é proporcionar
+                um serviço de qualidade para idosos e PCDs, garantindo uma
+                conexão eficiente entre cuidadores e clientes.
+              </p>
+              <p class="section-description" style="text-align: left">
+                Ao facilitar a comunicação e a curadoria de profissionais
+                qualificados, acreditamos que podemos promover melhorias na
+                economia e no bem-estar da sociedade como um todo, oferecendo
+                preços acessíveis e garantindo serviços de qualidade. A
+                proposta visa promover inclusão, acessibilidade e eficiência.
+              </p>
+            </div>
+            <div class="about-video-placeholder video-container-actual">
+              <video class="custom-video-player" preload="metadata" src="Files/filtros.mp4"
+                poster="Images/poster_sobre_nos.jpg" controls autoplay muted>
+                Seu navegador não suporta a tag de vídeo.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section tutorial-section" id="como-usar">
+        <div class="container">
+          <h2 class="section-title">Veja Como é Fácil Usar a EasyCare</h2>
+          <div class="single-video-placeholder-container" style="margin-top: 30px; margin-bottom: 30px">
+            <div class="video-placeholder video-container-actual" id="videoTutorialGeral">
+              <video class="custom-video-player" preload="metadata" src="Files/comousar.mp4"
+                poster="Images/poster_tutorial_geral.jpg" controls autoplay muted>
+                Seu navegador não suporta a tag de vídeo.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="como-encontrar">
+        <div class="container">
+          <h2 class="section-title">
+            Encontre o Correspondente Ideal para Você
+          </h2>
+          <p class="section-description">
+            Na EasyCare, usamos um sistema inteligente para te ajudar a encontrar o cuidado perfeito.
+            Basta nos dizer o que precisa!
+          </p>
+          <div class="finding-options-container">
+
+            <div class="finding-option-card">
+              <img src="https://placehold.co/100x100/a8d08d/ffffff?text=Corresponde" /* Placeholder pode ser atualizado
+                */ alt="Ícone de Correspondente Ideal" /* Texto alt atualizado */ class="finding-icon" />
+              <h3>Encontre seu Correspondente Ideal</h3>
+              <p>
+                Responda a algumas perguntas sobre as necessidades e preferências,
+                e deixe que a nossa plataforma encontre os cuidadores mais
+                compatíveis. Consideramos qualificações, experiência,
+                localização e muito mais para o seu conforto e segurança.
+              </p>
+              <div class="video-placeholder-inline video-container-actual">
+                <video class="custom-video-player" preload="metadata" src="Files/match.mp4" /* Mantenha o vídeo se ainda
+                  for relevante ou atualize */ poster="Images/poster_match.jpg" controls autoplay muted>
+                  Seu navegador não suporta a tag de vídeo.
+                </video>
+              </div>
+              <button class="btn btn-finding-option" id="btnIniciarCorrespondente">
+                Encontrar Correspondente
+              </button>
+            </div>
+
+          </div>
+          <h3 class="subsection-title">
+            Nossas Especialidades de Cuidado (Foco em Idosos e PCDs):
+          </h3>
+          <div class="services-grid">
+            <div class="service-card">
+              <img src="https://placehold.co/100x100/4099D4/ffffff?text=Idosos" alt="Ícone de cuidados para idosos"
+                class="service-icon" />
+              <h3>Cuidados para Idosos</h3>
+              <p>
+                Suporte completo para o bem-estar de idosos, incluindo
+                acompanhamento, auxílio em atividades diárias, administração
+                de medicamentos e companhia humanizada.
+              </p>
+            </div>
+            <div class="service-card">
+              <img src="https://placehold.co/100x100/f0ad4e/ffffff?text=PCD" alt="Ícone de cuidados para PCD"
+                class="service-icon" />
+              <h3>Cuidados para Pessoas com Deficiência (PCDs)</h3>
+              <p>
+                Assistência especializada e personalizada para pessoas com
+                deficiência, focando na autonomia, inclusão e apoio em
+                terapias e rotinas.
+              </p>
+            </div>
+            <div class="service-card">
+              <img src="https://placehold.co/100x100/A8D08D/ffffff?text=Especializados"
+                alt="Ícone de cuidados especializados" class="service-icon" />
+              <h3>Cuidados Especializados</h3>
+              <p>
+                Cuidadores com formação específica para condições como
+                Alzheimer, Parkinson, recuperação pós-operatória e outras
+                necessidades complexas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="support-section" id="suporte">
+        <div class="container">
+          <h2 class="section-title">Alguma dúvida?</h2>
+          <p class="section-description">
+            Temos respostas que podem ajudar. Se não encontrar o que procura,
+            fale conosco!
+          </p>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Como funciona o processo de cadastro?<i class="fas fa-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-content">
+                <p>
+                  Para se cadastrar, clique no botão "Cadastre-se" no topo da
+                  página, preencha o formulário com os seus dados e siga as
+                  instruções. Cuidadores precisarão de anexar documentos
+                  adicionais para verificação.
+                </p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Os cuidadores são verificados?<i class="fas fa-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-content">
+                <p>
+                  Sim, todos os cuidadores passam por um processo de
+                  verificação de documentos e referências para garantir a
+                  segurança e qualidade dos nossos serviços. Buscamos sempre
+                  os profissionais mais qualificados e confiáveis.
+                </p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Quais são as formas de pagamento?<i class="fas fa-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-content">
+                <p>
+                  Aceitamos diversas formas de pagamento, incluindo cartão de
+                  crédito, débito e transferência bancária. Os detalhes sobre
+                  o pagamento são combinados diretamente com o cuidador ou
+                  através da plataforma, dependendo do serviço.
+                </p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Posso cancelar um serviço agendado?<i class="fas fa-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-content">
+                <p>
+                  Sim, é possível cancelar serviços agendados. Cada cuidador
+                  pode ter uma política de cancelamento específica.
+                  Recomendamos verificar essa política diretamente com o
+                  profissional ou na descrição do seu perfil na plataforma.
+                </p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">
+                Como a EasyCare garante a qualidade dos cuidadores?<i class="fas fa-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-content">
+                <p>
+                  Realizamos uma rigorosa seleção que inclui verificação de
+                  antecedentes, referências profissionais e certificações
+                  relevantes. Além disso, incentivamos e disponibilizamos as
+                  avaliações contínuas feitas pelos clientes para ajudar na
+                  escolha do profissional.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-cta" id="btnAbrirModalContato">
+            Fale Conosco
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Easy Care. Todos os direitos reservados.</p>
+        <p>Feito com ❤️ para quem cuida.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="modalCadastro" class="modal hidden">
+    <div class="modal-content">
+      <span class="fechar" id="fecharModalCadastro" title="Fechar Modal">&times;</span>
+      <h2>Crie sua Conta EasyCare</h2>
+
+      <form id="formCadastro">
+        <div class="cadastro-etapa" id="etapa1">
+          <h3>Dados Pessoais e de Contato</h3>
+
+          <div class="form-group tipo-usuario-select">
+            <label for="tipoUsuario">Eu sou:</label>
+            <select id="tipoUsuario" name="tipoUsuario" class="form-control" required>
+              <option value="">Selecione...</option>
+              <option value="cuidador">Cuidador(a)</option>
+              <option value="cliente">Cliente</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="cadastroNomeCompleto">Nome Completo</label>
+            <input type="text" id="cadastroNomeCompleto" name="nomeCompleto" placeholder="Seu nome completo" required />
+          </div>
+
+          <div class="input-group">
+            <label for="cadastroEmail">E-mail</label>
+            <input type="email" id="cadastroEmail" name="email" placeholder="seuemail@exemplo.com" required />
+          </div>
+
+          <div class="input-group">
+            <label for="cadastroTelefone">Telefone</label>
+            <div class="telefone-group">
+              <input type="text" id="cadastroDdd" name="ddd" placeholder="DDD" maxlength="2" required pattern="\d{2}"
+                title="Insira 2 dígitos para o DDD" />
+              <input type="text" id="cadastroTelefoneNum" name="telefone" placeholder="Número" maxlength="10" required
+                title="Insira de 8 a 9 dígitos para o número" />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="cadastroDataNascimento">Data de Nascimento</label>
+            <input type="date" id="cadastroDataNascimento" name="dataNascimento" required />
+          </div>
+
+          <div class="input-group">
+            <label for="cadastroCpf">CPF</label>
+            <input type="text" id="cadastroCpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required />
+          </div>
+
+          <div class="input-group">
+            <label for="senha">Crie sua Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Mín. 8 caracteres" required />
+            <div id="barraSegurancaContainer" class="password-strength-container hidden">
+              <div id="nivelSeguranca" class="password-strength-bar"></div>
+            </div>
+            <div id="requisitosSenha" class="password-requirements">
+              <p id="minimoComprimento"><i class="fas fa-check-circle"></i> Mínimo de 8 caracteres</p>
+              <p id="minimoLetras"><i class="fas fa-check-circle"></i> Pelo menos uma letra (a-z)</p>
+              <p id="minimoNumeros"><i class="fas fa-check-circle"></i> Pelo menos um número (0-9)</p>
+              <p id="caracterEspecial"><i class="fas fa-check-circle"></i> Pelo menos um caractere especial (!@#$)</p>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="confirmarSenha">Confirme sua Senha</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Repita sua senha" required />
+          </div>
+
+          <div class="form-navigation">
+            <button type="submit" class="btn btn-primary" id="btnFinalizarCadastro">
+              Criar Conta
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  </div>
+  <div id="modalLogin" class="modal hidden">
+    <div class="modal-content">
+      <span class="fechar" id="fecharModalLogin" title="Fechar Modal">&times;</span>
+      <h2>Entrar na EasyCare</h2>
+      <form id="formLogin" novalidate>
+        <p class="login-hint">Login com os dados do titular da conta.</p>
+        <label for="loginEmail">E-mail ou Nome de Usuário:</label>
+        <input type="text" id="loginEmail" name="loginEmail" placeholder="Digite seu e-mail ou usuário" required />
+        <label for="loginSenha">Senha:</label>
+        <input type="password" id="loginSenha" name="loginSenha" placeholder="Digite sua senha" required />
+        <div class="login-opcoes">
+          <label class="lembrar-me">
+            <input type="checkbox" id="lembrarMe" name="lembrarMe" />
+            Lembrar-me
+          </label>
+          <a href="#" class="esqueci-senha" id="abrirRecuperarSenhaLink">Esqueci minha senha</a>
+        </div>
+        <button type="submit" class="btn btn-destaque-modal">Entrar</button>
+        <p class="link-cadastro-modal">
+          Não tem uma conta?
+          <a href="#" id="abrirCadastroDoLogin">Cadastre-se aqui</a>
+        </p>
+      </form>
+    </div>
+  </div>
+  <div id="modalRecuperarSenha" class="modal hidden">
+    <div class="modal-content">
+      <span class="fechar" id="fecharModalRecuperarSenha" title="Fechar Modal">&times;</span>
+      <h2>Recuperar Senha</h2>
+      <form id="formRecuperarSenha" novalidate>
+        <p class="modal-description">
+          Insira o seu e-mail cadastrado para enviarmos um link de redefinição
+          de senha.
+        </p>
+        <label for="recuperarEmail">E-mail:</label>
+        <input type="email" id="recuperarEmail" name="recuperarEmail" placeholder="seuemail@exemplo.com" required />
+        <button type="submit" class="btn btn-destaque-modal">
+          Enviar Link
+        </button>
+        <p class="link-voltar-login">
+          <a href="#" id="voltarParaLoginLink">Voltar para o Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+  <div id="modalContato" class="modal hidden">
+    <div class="modal-content">
+      <span class="fechar" id="fecharModalContato" title="Fechar Modal">&times;</span>
+      <h2>Fale Conosco</h2>
+      <form id="formModalContato" novalidate>
+        <p class="modal-description">
+          Envie-nos a sua dúvida ou sugestão. Responderemos o mais breve
+          possível.
+        </p>
+        <label for="modalContatoNome">Nome:</label>
+        <input type="text" id="modalContatoNome" name="modalContatoNome" placeholder="Seu nome completo" required />
+        <label for="modalContatoEmail">E-mail:</label>
+        <input type="email" id="modalContatoEmail" name="modalContatoEmail" placeholder="seuemail@exemplo.com"
+          required />
+        <label for="modalContatoTelefone">Telefone (opcional):</label>
+        <input type="tel" id="modalContatoTelefone" name="modalContatoTelefone" placeholder="(XX) XXXXX-XXXX" />
+        <label for="modalContatoAssunto">Assunto:</label>
+        <input type="text" id="modalContatoAssunto" name="modalContatoAssunto" placeholder="Motivo do contato"
+          required />
+        <label for="modalContatoMensagem">Mensagem:</label>
+        <textarea id="modalContatoMensagem" name="modalContatoMensagem" rows="5"
+          placeholder="Digite sua mensagem aqui..." required></textarea>
+        <button type="submit" class="btn btn-destaque-modal">
+          Enviar Mensagem
+        </button>
+      </form>
+    </div>
+  </div>
+  <div id="modalAvisoLoginCadastro" class="modal hidden">
+    <div class="modal-content">
+      <span class="fechar" id="fecharModalAvisoLoginCadastro" title="Fechar Modal">&times;</span>
+      <h2>Acesso Restrito</h2>
+      <p class="modal-description">
+        Para usar este serviço, você precisa se cadastrar ou fazer login na
+        plataforma.
+      </p>
+      <div class="modal-navigation">
+        <button type="button" class="btn btn-secondary" id="avisoIrParaLoginBtn">
+          Fazer Login
+        </button>
+        <button type="button" class="btn btn-primary" id="avisoIrParaCadastroBtn">
+          Cadastre-se
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="modalConfirmarIrParaBusca" class="modal hidden">
+    <div class="modal-content">
+      <span class="fechar" id="fecharModalConfirmarBusca" title="Fechar Modal">&times;</span>
+      <h3 id="confirmarBuscaTitle">Login/Cadastro realizado!</h3>
+      <p id="confirmarBuscaText" class="modal-description">
+
+      </p>
+      <div class="modal-navigation">
+        <button type="button" class="btn btn-secondary" id="confirmarBuscaFecharBtn">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-primary" id="confirmarMatchIrBtn">
+          Ir para Correspondentes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="congratsOverlay" class="congrats-overlay hidden">
+    <div class="congrats-message-box">
+      <span class="congrats-icon">&#10004;</span>
+      <h3 id="congratsTitle">Cadastro Concluído!</h3>
+      <p id="congratsText">Parabéns por se juntar à EasyCare!</p>
+      <button id="congratsCloseBtn" class="btn">Fechar</button>
+    </div>
+  </div>
+
+  <script src="Script/home.js"></script>
+</body>
+
+</html>

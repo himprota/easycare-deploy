@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Perfil - Easy Care</title>
+    <link rel="stylesheet" href="Styles/estilos_painel.css">
+    <link rel="stylesheet" href="Styles/perfil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <style>
+        /* Adicionado para estilização da foto de perfil e info-items */
+        .perfil-info-container {
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 600px; /* Limita a largura para melhor leitura */
+            margin: 20px auto; /* Centraliza o card */
+        }
+
+        .perfil-foto-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .perfil-foto-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Foto circular */
+            object-fit: cover; /* Garante que a imagem cubra bem o espaço */
+            border: 4px solid #007ac2; /* Borda com a cor primária */
+            background-color: #e0e0e0; /* Cor de fundo para placeholder */
+        }
+
+        .info-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1em; /* Tamanho base da fonte */
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #333;
+            margin-right: 10px;
+            flex-basis: 160px; /* Largura base para o label, ajuste conforme necessário */
+            min-width: 120px; /* Largura mínima */
+        }
+        .info-label i {
+            margin-right: 8px;
+            color: #007ac2;
+            width: 20px; /* Alinhamento dos ícones */
+            text-align: center;
+        }
+
+        .info-valor {
+            color: #555;
+            flex-grow: 1;
+            word-break: break-word; /* Quebra palavras longas como emails */
+        }
+        .texto-suporte-painel {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="painelClienteLogado">
+
+        <header class="topo painel-cliente-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Images/LogoEasyCare.png" alt="Logótipo Easy Care"
+                        onerror="this.src='https://placehold.co/130x40/fefcdf/2f4f2f?text=Easy+Care+Logo'; this.alt='Logótipo Easy Care Placeholder'" />
+                </a>
+            </div>
+            <div class="contexto-busca-header">
+                Meu Perfil
+            </div>
+            <button class="menu-hamburguer painel-menu-hamburguer" aria-label="Abrir menu do painel"
+                aria-expanded="false" aria-controls="painel-navigation-cliente-perfil" id="menuHamburguerBtnPerfil">
+                <span class="hamburguer-linha"></span>
+                <span class="hamburguer-linha"></span>
+                <span class="hamburguer-linha"></span>
+            </button>
+            <nav id="painel-navigation-cliente-perfil" class="painel-navigation">
+                <ul>
+                    <li><a href="perfil.html" class="nav-link-painel active">Perfil</a></li>
+                    <li><a href="match.html" class="nav-link-painel">Encontrar Correspondente</a></li>
+                    <li><a href="index.html#suporte" class="nav-link-painel">Ajuda</a></li>
+                </ul>
+            </nav>
+            <div class="botoes desktop-only">
+                <button class="btn contorno btn-sair-painel" id="btnSairDesktopPerfil">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </header>
+
+        <main class="container-principal-painel">
+            <section id="secaoPerfilExibicao" class="painel-secao active-section">
+                <h2 class="titulo-secao-painel">Minhas Informações</h2>
+                <div class="perfil-info-container">
+                    <div class="perfil-foto-container">
+                        <img id="perfilFoto" src="https://placehold.co/150x150/e0e0e0/777?text=Foto" alt="Foto do Perfil" class="perfil-foto-img">
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-user"></i> Nome Completo:</span>
+                        <span id="perfilNome" class="info-valor">Carregando...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-envelope"></i> E-mail:</span>
+                        <span id="perfilEmail" class="info-valor">Carregando...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-phone"></i> Telefone:</span>
+                        <span id="perfilTelefone" class="info-valor">Carregando...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-id-badge"></i> Tipo de Conta:</span>
+                        <span id="perfilTipoConta" class="info-valor">Carregando...</span>
+                    </div>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <p class="texto-suporte-painel">Estas são as suas informações básicas de conta. Para qualquer alteração, por favor, entre em contato com o suporte ou verifique as configurações avançadas (se disponíveis).</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 Easy Care. Todos os direitos reservados.</p>
+                <p>Feito com ❤️ para quem cuida.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="Script/utils.js" defer></script> 
+    <script src="Script/navegacao-perfil.js" defer></script> 
+    <script src="Script/perfil-display.js" defer></script> </body>
+</html>

@@ -1,0 +1,299 @@
+/* Styles/chat.css - Ajustes de Espaçamento e Layout */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Fundo cinza claro para a página */
+    display: flex;
+    flex-direction: column; /* Alterado para coluna para o header ficar no topo */
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    color: #333;
+    /* Alinhamento central para o conteúdo principal, se desejado */
+    align-items: center;
+}
+
+/* Ajustes para o container principal que agora inclui o header e footer do painel */
+#painelClienteLogado {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* O conteúdo principal da página de chat precisa de espaço para o header e footer */
+.painel-cliente-conteudo {
+    flex-grow: 1; /* Permite que o conteúdo principal ocupe o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha o chat container no topo da área de conteúdo */
+    padding: 25px 20px; /* Adiciona padding ao redor do container do chat */
+    box-sizing: border-box;
+}
+
+#chat-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* Largura máxima para o container do chat */
+    height: 75vh; /* Altura da viewport para o chat, ajustada para caber header/footer */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Garante que nada vaze do container */
+    padding: 25px; /* Aumentado o padding interno */
+    box-sizing: border-box; /* Inclui padding na largura/altura total */
+}
+
+#chat-container h1 {
+    font-size: 1.8rem;
+    color: #2e4a62;
+    margin-bottom: 25px; /* Aumentado a margem inferior */
+    text-align: center;
+    border-bottom: 1px solid #e9f0f7;
+    padding-bottom: 15px;
+}
+
+#chat-room-id {
+    font-size: 1rem;
+    color: #6a9a2a; /* Cor para o ID da sala */
+    font-weight: 600;
+}
+
+#messages-display {
+    flex-grow: 1; /* Ocupa o espaço restante */
+    background-color: #e9f0f7; /* Fundo para a área de mensagens */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px; /* Mantido para separar do input */
+    overflow-y: auto; /* Habilita rolagem para muitas mensagens */
+    display: flex;
+    flex-direction: column; /* Mensagens de cima para baixo */
+    gap: 10px; /* Espaço entre os balões de mensagem */
+}
+
+.message-bubble {
+    background-color: #dcf8c6; /* Cor para balões de mensagem do remetente */
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 18px;
+    /* margin-bottom foi movido para o gap do flexbox em messages-display */
+    max-width: 80%; /* Largura máxima do balão */
+    align-self: flex-end; /* Alinha mensagens do remetente à direita */
+    word-wrap: break-word; /* Quebra palavras longas */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    line-height: 1.4; /* Melhora a legibilidade do texto */
+}
+
+.message-bubble.received {
+    background-color: #ffffff; /* Cor para balões de mensagem recebida */
+    align-self: flex-start; /* Alinha mensagens recebidas à esquerda */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.message-bubble p {
+    margin: 0; /* Remove margem padrão de parágrafos */
+    font-size: 0.95rem;
+}
+
+.message-bubble .timestamp {
+    font-size: 0.75rem;
+    color: #777;
+    text-align: right;
+    margin-top: 5px;
+    display: block; /* Garante que o timestamp fique abaixo do texto */
+}
+
+#chat-input-area {
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    gap: 10px; /* Espaço entre o input e o botão */
+}
+
+input[type="text"]#message-input {
+    flex-grow: 1; /* Ocupa o máximo de espaço possível */
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Bordas arredondadas para campo de texto */
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* margin-right foi movido para o gap do flexbox em chat-input-area */
+}
+
+button#send-button {
+    background-color: #6a9a2a; /* Cor de destaque */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Impede que o botão encolha */
+}
+
+button#send-button:hover {
+    background-color: #557c21;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .painel-cliente-conteudo {
+        padding: 15px; /* Menos padding em telas menores */
+    }
+    #chat-container {
+        height: 85vh;
+        border-radius: 0; /* Ocupa a tela inteira em dispositivos móveis */
+        box-shadow: none;
+        padding: 15px;
+    }
+    #chat-container h1 {
+        font-size: 1.5rem;
+    }
+    input[type="text"]#message-input {
+        width: calc(100% - 60px); /* Ajusta largura para telas menores */
+        padding: 10px;
+    }
+    button#send-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #chat-container {
+        padding: 10px;
+    }
+    #chat-container h1 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+    .message-bubble {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .message-bubble .timestamp {
+        font-size: 0.7rem;
+    }
+    input[type="text"]#message-input {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    button#send-button {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    #chat-input-area {
+        padding-top: 10px;
+        gap: 8px;
+    }
+}
+
+/* --- ESTILOS PARA O MODAL DE NOTIFICAÇÕES (ADICIONADO) --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: flex; /* Para centralizar o conteúdo */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Centraliza vertical e horizontalmente */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 500px; /* Largura máxima do modal */
+    position: relative;
+    max-height: 80vh; /* Altura máxima para rolagem */
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content h2 {
+    text-align: center;
+    color: #2e4a62;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal .fechar {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal .fechar:hover,
+.modal .fechar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#listaNotificacoes {
+    flex-grow: 1;
+    overflow-y: auto; /* Rolagem para a lista de notificações */
+    margin-bottom: 15px;
+    padding-right: 5px; /* Espaço para a barra de rolagem */
+}
+
+.notification-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 2px solid #6a9a2a;
+}
+
+.notification-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #4d7298;
+}
+
+.notification-item p strong {
+    color: #2e4a62;
+}
+
+.no-notifications {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Classe para esconder/mostrar o modal via JS */
+.modal.hidden {
+    display: none;
+}
+.modal:not(.hidden) { /* Mostra o modal */
+    display: flex;
+}

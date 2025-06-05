@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Care - Chat</title>
+    <link rel="stylesheet" href="Styles/home.css" />
+    <link rel="stylesheet" href="Styles/estilos_painel.css" />
+    <link rel="stylesheet" href="Styles/chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Adicione estilos para o botão do WhatsApp */
+        .btn-whatsapp {
+            background-color: #25D366; /* Cor verde do WhatsApp */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px auto; /* Centraliza e adiciona margem */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1DA851;
+            transform: translateY(-2px);
+        }
+        .btn-whatsapp .fa-whatsapp {
+            font-size: 1.2em;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="painelClienteLogado">
+        <header class="topo painel-cliente-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Images/LogoEasyCare.png" alt="Logótipo Easy Care"
+                        onerror="this.src='https://placehold.co/130x40/fefcdf/2f4f2f?text=Easy+Care+Logo'; this.alt='Logótipo Easy Care Placeholder'" />
+                </a>
+            </div>
+            <div class="contexto-busca-header">
+                Conversando com:
+                <span id="nomeParticipanteChat">Carregando...</span>
+            </div>
+
+            <nav id="painel-navigation-cliente" class="painel-navigation">
+                <ul>
+                    <li><a href="index.html" class="nav-link-painel"><i class="fas fa-home icone-nav"></i> Início</a>
+                    </li>
+                    <li><a href="perfil.html" class="nav-link-painel"><i class="fas fa-user-circle icone-nav"></i> Meu
+                            Perfil</a></li>
+                    <li><a href="#" class="nav-link-painel"><i class="fas fa-bell icone-nav"></i> Notificações</a></li>
+                    <li class="nav-button-item">
+                        <button id="btnSairPainel" class="btn-sair-painel">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-right-mobile">
+                <button class="menu-hamburguer-painel" aria-label="Abrir menu" aria-expanded="false"
+                    aria-controls="painel-navigation-cliente">
+                    <span class="hamburguer-linha-painel"></span>
+                    <span class="hamburguer-linha-painel"></span>
+                    <span class="hamburguer-linha-painel"></span>
+                </button>
+            </div>
+        </header>
+
+        <main class="painel-cliente-conteudo">
+            <div id="chat-container">
+                <h1>Chat com: <span id="target-user-name">Carregando...</span></h1>
+                <button id="whatsapp-chat-button" class="btn-whatsapp hidden">
+                    <i class="fab fa-whatsapp"></i> Conversar no WhatsApp
+                </button>
+                <div id="messages-display">
+                </div>
+                <div id="chat-input-area">
+                    <input type="text" id="message-input" placeholder="Digite sua mensagem...">
+                    <button id="send-button">Enviar</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="painel-cliente-footer">
+            <p>&copy; 2025 Easy Care. Todos os direitos reservados.</p>
+            <nav class="footer-nav">
+                <a href="#">Termos de Serviço</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Ajuda</a>
+            </nav>
+        </footer>
+    </div>
+
+    <div id="modalNotificacoes" class="modal hidden">
+        <div class="modal-content">
+            <span class="fechar" id="fecharModalNotificacoes" title="Fechar Modal">&times;</span>
+            <h2>Notificações de Likes</h2>
+            <div id="listaNotificacoes">
+                <p class="mensagem-inicial">Carregando notificações...</p>
+            </div>
+            <p class="no-notifications hidden">Nenhuma nova notificação de like.</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Lógica para obter o ID do usuário alvo e o nome da URL ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetUserId = urlParams.get('targetId');
+            const targetUserName = urlParams.get('targetName');
+
+            const whatsappChatButton = document.getElementById('whatsapp-chat-button'); // Get the WhatsApp button
+            let targetUserPhone = ''; // Initialize phone variable
+
+            if (targetUserId && targetUserName) {
+                document.getElementById('target-user-name').textContent = decodeURIComponent(targetUserName); // Exibir nome do usuário alvo
+                document.getElementById('nomeParticipanteChat').textContent = decodeURIComponent(targetUserName); // Também no cabeçalho
+                console.log('Chat com:', decodeURIComponent(targetUserName), 'ID:', targetUserId);
+
+                // --- Fetch the target user's phone number from the backend ---
+                const token = localStorage.getItem('jwtToken'); // Assuming you store JWT token in localStorage
+                if (token) {
+                    fetch(`http://localhost:3000/api/user/profile/${targetUserId}`, { // Replace with your actual API endpoint
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            if (response.status === 403 || response.status === 401) {
+                                throw new Error('Não autorizado a ver o perfil. Sua sessão pode ter expirado.');
+                            }
+                            throw new Error('Erro ao buscar informações do usuário alvo.');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.phone) { // Assuming the API returns a 'phone' field
+                            targetUserPhone = data.phone;
+                            whatsappChatButton.classList.remove('hidden'); // Show button if phone is available
+                            console.log('Número de telefone do alvo:', targetUserPhone);
+                        } else {
+                            console.warn('Número de telefone do usuário alvo não disponível na resposta da API.');
+                            whatsappChatButton.classList.add('hidden'); // Hide button if no phone
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Falha ao buscar detalhes do usuário alvo:', error);
+                        alert('Não foi possível carregar as informações do usuário alvo: ' + error.message);
+                        whatsappChatButton.classList.add('hidden'); // Hide button on error
+                    });
+                } else {
+                    console.error('Token JWT não encontrado. Não é possível buscar informações do usuário alvo.');
+                    whatsappChatButton.classList.add('hidden');
+                }
+
+            } else {
+                document.getElementById('target-user-name').textContent = 'Usuário Desconhecido';
+                document.getElementById('nomeParticipanteChat').textContent = 'Usuário Desconhecido';
+                console.error('ID do usuário alvo ou nome não encontrado na URL.');
+                whatsappChatButton.classList.add('hidden'); // Hide button if no target user info
+            }
+
+            // --- Lógica de Envio de Mensagens ---
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            const messagesDisplay = document.getElementById('messages-display');
+
+            // Função para obter o nome do usuário logado (remetente)
+            // Você precisará armazenar o nome do usuário logado no localStorage durante o login,
+            // ou fazer uma requisição API para obtê-lo. Por simplicidade, vamos usar um placeholder por enquanto.
+            // OU você pode passar o nome do usuário logado também na URL ou localStorage
+            const loggedInUserName = localStorage.getItem('userName') || 'Você'; // Assumindo que 'userName' é salvo no localStorage
+
+            function sendMessage() {
+                const messageText = messageInput.value.trim();
+
+                if (messageText) {
+                    const now = new Date();
+                    const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    const messageBubble = document.createElement('div');
+                    messageBubble.classList.add('message-bubble');
+                    // Assumimos que "Você" é o remetente, então é uma bolha de envio
+                    messageBubble.innerHTML = `
+                      <p><strong>${loggedInUserName}:</strong> ${messageText}</p>
+                      <span class="timestamp">${timestamp}</span>
+                  `;
+                    messagesDisplay.appendChild(messageBubble);
+
+                    messagesDisplay.scrollTop = messagesDisplay.scrollHeight; // Rola para o final
+                    messageInput.value = ''; // Limpa o campo de mensagem
+
+                    // --- AQUI VOCÊ INTEGRARIA COM O BACKEND PARA ENVIAR A MENSAGEM ---
+                    console.log(`Mensagem de ${loggedInUserName} para ${decodeURIComponent(targetUserName)}: "${messageText}" (${timestamp})`);
+                    // Ex: fetch('/api/chat/send-message', { method: 'POST', body: JSON.stringify({ roomId: chatRoomId, senderId: yourUserId, receiverId: targetUserId, message: messageText }) });
+                    // Para um chat em tempo real, usaria WebSockets (Socket.IO) aqui.
+                }
+            }
+
+            // Event Listener para o botão Enviar
+            sendButton.addEventListener('click', sendMessage);
+
+            // Event Listener para a tecla Enter no campo de mensagem
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // --- Lógica para o botão de WhatsApp ---
+            if (whatsappChatButton) {
+                whatsappChatButton.addEventListener('click', () => {
+                    if (targetUserPhone) {
+                        const cleanedPhone = targetUserPhone.replace(/\D/g, ''); // Remove non-numeric characters
+                        window.open(`https://wa.me/${cleanedPhone}`, '_blank');
+                    } else {
+                        alert('Número de telefone do usuário não disponível para iniciar o chat do WhatsApp.');
+                    }
+                });
+            }
+
+            // --- Lógica do Menu Hambúrguer (copiada do match.html) ---
+            const menuHamburguerPainel = document.querySelector('.menu-hamburguer-painel');
+            const painelNavigationCliente = document.getElementById('painel-navigation-cliente');
+
+            if (menuHamburguerPainel && painelNavigationCliente) {
+                menuHamburguerPainel.addEventListener('click', () => {
+                    const expanded = menuHamburguerPainel.getAttribute('aria-expanded') === 'true' || false;
+                    menuHamburguerPainel.setAttribute('aria-expanded', !expanded);
+                    painelNavigationCliente.classList.toggle('active');
+                });
+            }
+
+            // --- Lógica de Sair ---
+            const btnSairPainel = document.getElementById('btnSairPainel');
+            if (btnSairPainel) {
+                btnSairPainel.addEventListener('click', () => {
+                    localStorage.removeItem('jwtToken');
+                    localStorage.removeItem('userType');
+                    localStorage.removeItem('userId'); // Certifique-se de remover o ID do usuário
+                    localStorage.removeItem('userName'); // Se você salvar o nome do usuário logado
+                    window.location.href = 'index.html';
+                });
+            }
+
+            // --- Lógica para o Modal de Notificações (copiada do script_match.js) ---
+            const modalNotificacoes = document.getElementById('modalNotificacoes');
+            const fecharModalNotificacoesBtn = document.getElementById('fecharModalNotificacoes');
+            const listaNotificacoesDiv = document.getElementById('listaNotificacoes');
+            const noNotificationsMessage = modalNotificacoes.querySelector('.no-notifications');
+            const notificacoesBtn = document.querySelector('.nav-link-painel[href="#"]').closest('li').querySelector('a[href="#"]');
+
+            if (notificacoesBtn) {
+                notificacoesBtn.addEventListener('click', async (event) => {
+                    event.preventDefault();
+
+                    modalNotificacoes.classList.remove('hidden');
+                    listaNotificacoesDiv.innerHTML = '<p class="mensagem-inicial">Carregando notificações...</p>';
+                    noNotificationsMessage.classList.add('hidden');
+
+                    try {
+                        const token = localStorage.getItem('jwtToken');
+                        if (!token) {
+                            alert('Sua sessão expirou. Por favor, faça login novamente.');
+                            modalNotificacoes.classList.add('hidden');
+                            return;
+                        }
+
+                        const response = await fetch('http://localhost:3000/api/chat/notifications/likes', {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`Erro ao buscar notificações: ${response.status} ${response.statusText}`);
+                        }
+
+                        const likes = await response.json();
+                        listaNotificacoesDiv.innerHTML = '';
+
+                        if (likes.length > 0) {
+                            likes.forEach(like => {
+                                const item = document.createElement('div');
+                                item.classList.add('notification-item');
+                                item.innerHTML = `
+                                  <img src="${like.fotoUrl || 'https://placehold.co/40x40/ccc/999?text=Foto'}" alt="Foto de ${like.nome}">
+                                  <p><strong>${like.nome}</strong> (${like.tipoConta}) curtiu o seu perfil!</p>
+                              `;
+                                listaNotificacoesDiv.appendChild(item);
+                            });
+                        } else {
+                            noNotificationsMessage.classList.remove('hidden');
+                        }
+
+                    } catch (error) {
+                        console.error('Falha ao carregar notificações:', error);
+                        listaNotificacoesDiv.innerHTML = `<p class="mensagem-inicial" style="color: red;">Erro ao carregar notificações: ${error.message}</p>`;
+                        noNotificationsMessage.classList.remove('hidden');
+                    }
+                });
+            }
+
+            if (fecharModalNotificacoesBtn) {
+                fecharModalNotificacoesBtn.addEventListener('click', () => {
+                    modalNotificacoes.classList.add('hidden');
+                });
+            }
+
+            if (modalNotificacoes) {
+                window.addEventListener('click', (event) => {
+                    if (event.target === modalNotificacoes) {
+                        modalNotificacoes.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
